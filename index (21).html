@@ -1,0 +1,2793 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GeChat Pro - Cloud Ready with Luxury 1k-100k Gifts & Lucky Unli Tap</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDKs para sa Google Login at Cloud Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gechatBg: '#0b0818',
+                        gechatCard: '#16112c',
+                        gechatCardLight: '#211a40',
+                        gechatPink: '#FF2E93',
+                        gechatPurple: '#9D4EDD',
+                        gechatPurpleDark: '#5A189A',
+                        gechatGold: '#FFD700',
+                        gechatGreen: '#10B981',
+                        gechatTeal: '#0f766e',
+                        gechatTealDark: '#042f2e'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body > iframe, 
+        #netlify-deploy-preview, 
+        .netlify-toolbar,
+        [id^="netlify"],
+        iframe[src*="netlify"] {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            opacity: 0 !important;
+        }
+
+        body {
+            background-color: #0b0818;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track { background: #0b0818; }
+        ::-webkit-scrollbar-thumb { background: #9D4EDD; border-radius: 4px; }
+
+        .pink-purple-gradient {
+            background: linear-gradient(135deg, #FF2E93 0%, #9D4EDD 100%);
+        }
+        .pink-purple-btn {
+            background: linear-gradient(135deg, #FF2E93 0%, #9D4EDD 100%);
+            box-shadow: 0 4px 15px rgba(255, 46, 147, 0.4);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            pointer-events: auto !important;
+            position: relative;
+            z-index: 40;
+        }
+        .pink-purple-btn:active {
+            transform: scale(0.96);
+            box-shadow: 0 2px 8px rgba(255, 46, 147, 0.2);
+        }
+        .gold-btn {
+            background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            color: #000;
+            cursor: pointer;
+            pointer-events: auto !important;
+            position: relative;
+            z-index: 40;
+        }
+
+        /* TEAL & CIRCULAR PR BACKGROUND THEMES */
+        .theme-teal {
+            background: radial-gradient(circle at center, #115e59 0%, #042f2e 60%, #021a19 100%);
+            border-top: 2px solid #2dd4bf;
+        }
+        .theme-gold {
+            background: radial-gradient(circle at center, #3d300e 0%, #171104 100%);
+            border-top: 2px solid #FFD700;
+        }
+        .theme-rose {
+            background: radial-gradient(circle at center, #42122b 0%, #14050d 100%);
+            border-top: 2px solid #FF2E93;
+        }
+        .theme-cyber {
+            background: radial-gradient(circle at center, #0e374f 0%, #04121a 100%);
+            border-top: 2px solid #00F0FF;
+        }
+        .theme-galaxy {
+            background: radial-gradient(circle at center, #271042 0%, #090312 100%);
+            border-top: 2px solid #9D4EDD;
+        }
+        .theme-default {
+            background: radial-gradient(circle at center, #134e4a 0%, #042f2e 100%);
+        }
+
+        .pr-circle-container {
+            background: rgba(4, 47, 46, 0.75);
+            backdrop-filter: blur(16px);
+            border: 2px solid rgba(45, 212, 191, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(20, 184, 166, 0.2);
+            border-radius: 2.5rem;
+            padding: 1.25rem;
+            margin: 0.5rem;
+        }
+
+        .avatar-frame-gold {
+            border: 3px solid #FFD700;
+            box-shadow: 0 0 12px #FFD700, inset 0 0 8px #FFD700;
+            transform: perspective(300px) rotateY(-5deg);
+        }
+        .avatar-frame-vip {
+            border: 3px solid #FF2E93;
+            box-shadow: 0 0 15px #FFD700, inset 0 0 10px #9D4EDD;
+            transform: perspective(300px) rotateY(5deg);
+        }
+        .avatar-frame-diamond {
+            border: 3px solid #00F0FF;
+            box-shadow: 0 0 15px #00F0FF, inset 0 0 8px #00F0FF;
+            transform: perspective(300px) rotateX(5deg);
+        }
+
+        @keyframes scanLine {
+            0% { top: 10%; }
+            50% { top: 85%; }
+            100% { top: 10%; }
+        }
+        .scan-line {
+            position: absolute;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00F0FF, #FF2E93, transparent);
+            box-shadow: 0 0 15px #00F0FF;
+            animation: scanLine 2s infinite ease-in-out;
+        }
+
+        .casino-table-felt {
+            background: radial-gradient(circle, #0f4c3a 0%, #062319 100%);
+            border: 4px solid #b8860b;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.8), 0 10px 25px rgba(0,0,0,0.5);
+        }
+        
+        .real-card-3d-large {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            color: #1a202c; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            border: 2px solid #cbd5e1; 
+            transform: perspective(800px) rotateX(12deg) rotateY(-5deg);
+            transition: transform 0.4s ease;
+            width: 85px;
+            height: 120px;
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #5A189A 0%, #211a40 100%);
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            width: 85px;
+            height: 120px;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            transform: perspective(800px) rotateX(12deg);
+        }
+
+        @keyframes wheelSpin3D {
+            0% { transform: rotate(0deg) scale(1); filter: drop-shadow(0 0 10px #FFD700); }
+            50% { transform: rotate(1440deg) scale(1.08); filter: drop-shadow(0 0 25px #FF2E93); }
+            100% { transform: rotate(2880deg) scale(1); filter: drop-shadow(0 0 15px #FFD700); }
+        }
+        .animate-wheel-3d {
+            animation: wheelSpin3D 3.5s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
+        }
+
+        @keyframes slotRoll3D {
+            0% { transform: translateY(-50px); opacity: 0.3; }
+            50% { transform: translateY(50px); opacity: 0.8; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slot-3d {
+            animation: slotRoll3D 0.18s infinite linear;
+        }
+
+        @keyframes cannonFire3D {
+            0% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.4) translateY(-15px) rotate(-10deg); filter: drop-shadow(0 0 20px #00F0FF); }
+            100% { transform: scale(1) translateY(0); }
+        }
+        .animate-cannon-3d {
+            animation: cannonFire3D 0.3s ease-in-out;
+        }
+
+        @keyframes zeusLightning {
+            0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 10px #FFD700); }
+            50% { opacity: 1; filter: drop-shadow(0 0 30px #00F0FF); transform: scale(1.05); }
+        }
+        .animate-zeus {
+            animation: zeusLightning 1.2s infinite ease-in-out;
+        }
+
+        @keyframes giftFly3D {
+            0% { transform: scale(0.2) translateY(100px); opacity: 0; }
+            50% { transform: scale(1.5) translateY(-40px); opacity: 1; filter: drop-shadow(0 0 30px #FF2E93); }
+            100% { transform: scale(1) translateY(0); opacity: 0; }
+        }
+        .animate-gift-fly {
+            animation: giftFly3D 1.8s ease-in-out forwards;
+        }
+
+        @keyframes flyRocket {
+            0% { transform: translate(-100px, 100vh) rotate(-45deg) scale(0.5); opacity: 0; }
+            50% { opacity: 1; transform: translate(40vw, 40vh) rotate(-45deg) scale(1.4); }
+            100% { transform: translate(110vw, -200px) rotate(-45deg) scale(0.8); opacity: 0; }
+        }
+        .animate-rocket {
+            animation: flyRocket 4s ease-in-out forwards;
+        }
+
+        @keyframes luxuryGlow {
+            0%, 100% { box-shadow: 0 0 20px #FFD700, inset 0 0 15px #FF8C00; }
+            50% { box-shadow: 0 0 40px #FF2E93, inset 0 0 25px #00F0FF; }
+        }
+        .luxury-effect-screen {
+            animation: luxuryGlow 1.5s infinite alternate;
+        }
+
+        .glass-modal {
+            background: rgba(11, 8, 24, 0.98);
+            backdrop-filter: blur(16px);
+            z-index: 100 !important;
+            pointer-events: auto !important;
+        }
+
+        .fixed.hidden {
+            display: none !important;
+            pointer-events: none !important;
+        }
+        
+        button, .cursor-pointer, input, select {
+            pointer-events: auto !important;
+            cursor: pointer;
+        }
+        input, select {
+            cursor: text !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex justify-center items-center bg-black">
+
+    <!-- Mobile Frame Container -->
+    <div id="appContainer" class="w-full max-w-md h-screen max-h-[920px] bg-gechatBg text-white flex flex-col relative overflow-hidden shadow-2xl border border-gechatCardLight sm:rounded-3xl">
+
+        <!-- GLOBAL TOP STATUS & SYSTEM TICKER HEADER -->
+        <header class="bg-gechatCard px-4 py-3 flex items-center justify-between border-b border-gechatCardLight/50 z-20">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full pink-purple-gradient flex items-center justify-center font-black text-sm text-white shadow-lg">
+                    GC
+                </div>
+                <div>
+                    <h1 class="text-xs font-bold tracking-wider text-transparent bg-clip-text pink-purple-gradient uppercase">GeChat Pro</h1>
+                    <p class="text-[10px] text-gray-400 leading-none">Official Voice & Games</p>
+                </div>
+            </div>
+            
+            <!-- Quick Balances Pill -->
+            <div class="flex items-center gap-2 bg-gechatBg/80 px-2.5 py-1 rounded-full border border-gechatCardLight">
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-coins text-gechatGold text-xs"></i>
+                    <span id="topCoinsDisplay" class="text-xs font-bold text-gechatGold">0</span>
+                </div>
+                <div class="w-px h-3 bg-gray-700"></div>
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-gem text-gechatPink text-xs"></i>
+                    <span id="topGemsDisplay" class="text-xs font-bold text-gechatPink">0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- GLOBAL ANNOUNCEMENT TICKER -->
+        <div class="bg-gechatCardLight/40 px-3 py-1 flex items-center text-[11px] text-gray-300 border-b border-gechatCardLight/30 z-10">
+            <i class="fa-solid fa-bullhorn text-gechatPink mr-2 animate-bounce"></i>
+            <div class="overflow-hidden whitespace-nowrap w-full">
+                <div id="systemTickerText" class="inline-block animate-marquee pl-full">
+                    🎉 Welcome to GeChat Pro Cloud! Complete daily PR tasks & Science/History Trivia to earn gems! | Real-time Database Connected!
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT AREA (4 TABS) -->
+        <main id="mainViewport" class="flex-1 overflow-y-auto relative pb-24 z-10">
+            
+            <!-- PAGE 1: PARTY ROOMS / VOICE HUBS -->
+            <section id="pageRooms" class="p-3 space-y-4">
+                <div class="relative rounded-2xl p-4 pink-purple-gradient shadow-lg overflow-hidden flex justify-between items-center">
+                    <div class="z-10 max-w-[65%]">
+                        <span class="bg-black/40 text-gechatGold text-[10px] px-2 py-0.5 rounded-full font-bold">HOT EVENT</span>
+                        <h2 class="text-base font-extrabold mt-1 leading-tight">1-Hour Daily PR Task: Earn Gems!</h2>
+                        <p class="text-[11px] opacity-90 mt-0.5">Stay 1hr on mic seat to claim</p>
+                        <button onclick="switchTab('task')" class="mt-2 bg-white text-gechatPink text-[11px] font-bold px-3 py-1 rounded-full shadow hover:bg-gray-100 cursor-pointer pointer-events-auto">
+                            Join Event
+                        </button>
+                    </div>
+                    <i class="fa-solid fa-gift text-6xl opacity-30 text-white absolute -right-2 -bottom-2"></i>
+                </div>
+
+                <div>
+                    <button onclick="openPartyRoom()" class="w-full py-3.5 pink-purple-btn rounded-2xl text-xs font-extrabold flex items-center justify-center gap-2 shadow-lg cursor-pointer pointer-events-auto">
+                        <i class="fa-solid fa-plus-circle text-base"></i> CREATE MY PARTY ROOM
+                    </button>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-sm font-bold text-gray-200 flex items-center gap-1.5">
+                            <i class="fa-solid fa-fire text-gechatPink"></i> Featured Voice Rooms
+                        </h3>
+                        <span class="text-[11px] text-gechatPink font-semibold">15 Mics Active</span>
+                    </div>
+
+                    <div onclick="openPartyRoom()" class="bg-gechatCard rounded-2xl p-3 border border-gechatCardLight cursor-pointer hover:border-gechatPink transition-all shadow-md group pointer-events-auto">
+                        <div class="flex items-center justify-between pb-2 border-b border-gechatCardLight/50">
+                            <div class="flex items-center gap-2">
+                                <div class="relative">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center font-bold text-sm">
+                                        PR
+                                    </div>
+                                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-gechatGreen rounded-full border-2 border-gechatCard"></span>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold group-hover:text-gechatPink transition-colors">👑 VIP Super Party Lounge #01</h4>
+                                    <p id="roomHostDisplay" class="text-[10px] text-gray-400">Host: GeChat User (ID: 784920)</p>
+                                </div>
+                            </div>
+                            <span class="bg-gechatPink/20 text-gechatPink border border-gechatPink/40 text-[10px] px-2 py-0.5 rounded-full font-bold">
+                                ENTER ROOM
+                            </span>
+                        </div>
+
+                        <div class="mt-2 flex justify-between items-center text-[11px] text-gray-400">
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-users text-gechatPurple"></i> 15/15 Seats</span>
+                            <span class="flex items-center gap-1 text-gechatGold"><i class="fa-solid fa-trophy"></i> Revenue: <span id="roomRevenueCount">0</span> Coins</span>
+                            <span class="text-gechatGreen font-semibold">🔴 LIVE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div onclick="openPartyRoom()" class="bg-gechatCard rounded-xl p-3 border border-gechatCardLight cursor-pointer hover:border-gechatPurple transition pointer-events-auto">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold">TP</div>
+                            <div class="truncate">
+                                <h5 class="text-xs font-bold truncate">Teen Patti Club</h5>
+                                <p class="text-[9px] text-gray-400">8 Mics • In-Room Games</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] bg-gechatPurple/20 text-gechatPurple px-2 py-0.5 rounded-full">Enter Room</span>
+                    </div>
+
+                    <div onclick="openPartyRoom()" class="bg-gechatCard rounded-xl p-3 border border-gechatCardLight cursor-pointer hover:border-gechatPurple transition pointer-events-auto">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center text-xs font-bold">D&T</div>
+                            <div class="truncate">
+                                <h5 class="text-xs font-bold truncate">Dragon vs Tiger</h5>
+                                <p class="text-[9px] text-gray-400">12 Mics • In-Room Games</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] bg-gechatPurple/20 text-gechatPurple px-2 py-0.5 rounded-full">Enter Room</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 2: MESSAGES & PAID CHAT -->
+            <section id="pageChats" class="p-3 space-y-3 hidden">
+                <div class="flex justify-between items-center mb-1">
+                    <h2 class="text-base font-bold text-gray-100 flex items-center gap-2">
+                        <i class="fa-solid fa-comments text-gechatPink"></i> Messages & Chats
+                    </h2>
+                    <span class="text-[10px] text-gechatPink bg-gechatPink/10 px-2 py-1 rounded-full border border-gechatPink/30 font-bold">
+                        Paid Chat: 10 Gems/reply
+                    </span>
+                </div>
+
+                <div class="space-y-2">
+                    <div onclick="openDirectChat('Angel_Host', 'Female')" class="bg-gechatCard p-3 rounded-2xl border border-gechatCardLight flex items-center justify-between cursor-pointer hover:border-gechatPink transition pointer-events-auto">
+                        <div class="flex items-center gap-3">
+                            <div class="relative">
+                                <img src="https://placehold.co/100x100/9D4EDD/ffffff?text=Angel" class="w-11 h-11 rounded-full avatar-frame-vip object-cover">
+                                <span class="absolute bottom-0 right-0 w-3 h-3 bg-gechatGreen rounded-full border-2 border-gechatCard"></span>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <h4 class="text-xs font-bold">Angel_Host ✨</h4>
+                                    <span class="bg-pink-500/20 text-pink-400 text-[9px] px-1.5 py-0.2 rounded font-semibold">♀ Female Verified</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400 truncate max-w-[170px] mt-0.5">Hi handsome! Let's voice call?</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-[9px] text-gray-500">10:42 AM</span>
+                            <div class="mt-1">
+                                <span class="bg-gechatPink text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full">1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div onclick="openDirectChat('Mark_Gamer', 'Male')" class="bg-gechatCard p-3 rounded-2xl border border-gechatCardLight flex items-center justify-between cursor-pointer hover:border-gechatPurple transition pointer-events-auto">
+                        <div class="flex items-center gap-3">
+                            <div class="relative">
+                                <img src="https://placehold.co/100x100/5A189A/ffffff?text=Mark" class="w-11 h-11 rounded-full border-2 border-blue-500 object-cover">
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <h4 class="text-xs font-bold">Mark_Gamer 🎮</h4>
+                                    <span class="bg-blue-500/20 text-blue-400 text-[9px] px-1.5 py-0.2 rounded font-semibold">♂ Male</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400 truncate max-w-[170px] mt-0.5">GG bro! Let's play Teen Patti again</p>
+                            </div>
+                        </div>
+                        <span class="text-[9px] text-gray-500">Yesterday</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 3: TASK CENTER -->
+            <section id="pageTask" class="p-3 space-y-4 hidden">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-base font-bold text-gray-100 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-gechatPink"></i> Daily Task Center
+                    </h2>
+                    <span class="text-[10px] text-gechatPink bg-gechatPink/10 px-2 py-0.5 rounded-full border border-gechatPink/30 font-bold">
+                        Earn Free Gems & Bonuses
+                    </span>
+                </div>
+
+                <div class="space-y-3">
+                    <!-- JOIN AGENCY TASK / REQUEST BOX -->
+                    <div class="bg-gechatCard p-4 rounded-2xl border-2 border-yellow-500/60 space-y-3 shadow-lg">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-9 h-9 rounded-xl bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-sm font-black border border-yellow-500/40">🏢</div>
+                                <div>
+                                    <h4 class="text-xs font-extrabold text-white">Join Agency / Apply as Host</h4>
+                                    <p class="text-[10px] text-gray-300">Sumali sa opisyal na agency para kumita ng komisyon</p>
+                                </div>
+                            </div>
+                            <span id="joinAgencyStatusBadge" class="text-[10px] bg-yellow-500/20 text-yellow-300 font-bold px-2 py-0.5 rounded-full border border-yellow-500/40">Not Joined</span>
+                        </div>
+                        <div class="space-y-2">
+                            <input id="userJoinAgencyIdInput" type="text" placeholder="Ilagay ang Agency Code (e.g. AG-9988)" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                            <button onclick="submitUserJoinAgency()" class="w-full py-2.5 gold-btn rounded-xl text-xs font-extrabold cursor-pointer pointer-events-auto">
+                                🏢 MAG-APPLY / SUMALI SA AGENCY
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- DAILY SCIENCE & HISTORY TRIVIA TASK BOX -->
+                    <div class="bg-gechatCard p-4 rounded-2xl border-2 border-gechatPink/60 space-y-3 shadow-lg">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-9 h-9 rounded-xl pink-purple-gradient flex items-center justify-center text-sm font-black">🧠</div>
+                                <div>
+                                    <h4 class="text-xs font-extrabold text-white">Daily Science & History Quiz</h4>
+                                    <p class="text-[10px] text-gray-300">Sagutin ang 10 random questions araw-araw (+5 Gems bawat tamang sagot)</p>
+                                </div>
+                            </div>
+                            <span id="quizCounterBadge" class="text-[10px] bg-gechatPink/20 text-gechatPink font-bold px-2 py-0.5 rounded-full border border-gechatPink/40">0/10 Done</span>
+                        </div>
+
+                        <!-- Quiz Game Inner Card -->
+                        <div id="quizGameArea" class="bg-gechatBg p-3 rounded-xl border border-gechatCardLight space-y-2">
+                            <div class="flex justify-between items-center text-[10px] font-bold text-gray-400">
+                                <span id="quizCategoryText" class="text-gechatPink uppercase">KATEGORYA: SCIENCE</span>
+                                <span id="quizScoreText">Gems Nakuha Ngayon: 0</span>
+                            </div>
+                            
+                            <div id="quizQuestionText" class="text-xs font-bold text-white min-h-[32px]">
+                                Mag-click sa ibaba para simulan ang iyong 10 daily trivia questions!
+                            </div>
+
+                            <div id="quizOptionsContainer" class="space-y-1.5 pt-1">
+                                <button onclick="startDailyQuiz()" class="w-full py-2.5 pink-purple-btn rounded-xl text-xs font-extrabold cursor-pointer pointer-events-auto">
+                                    🎮 SIMULAN ANG DAILY TRIVIA (10 Qs)
+                                </button>
+                            </div>
+
+                            <div id="quizResultMsg" class="text-center text-xs font-bold pt-1"></div>
+                        </div>
+                    </div>
+
+                    <!-- 1-HOUR PR MIC STAY TASK -->
+                    <div class="bg-gechatCard p-3.5 rounded-2xl border border-gechatCardLight flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl pink-purple-gradient flex items-center justify-center text-lg">⏱️</div>
+                            <div>
+                                <h4 class="text-xs font-bold">1-Hour Daily PR Mic Stay Task</h4>
+                                <p class="text-[10px] text-gray-400">Umupo sa mic seat sa PR nang 1 oras daily</p>
+                                <p id="task1HourProgressText" class="text-[10px] text-gechatGold font-bold mt-0.5">Progress: 0m / 60m</p>
+                                <div class="flex items-center gap-1 mt-0.5 text-[11px] text-gechatPink font-bold">
+                                    <i class="fa-solid fa-gem"></i> +500 Gems Direct to Wallet
+                                </div>
+                            </div>
+                        </div>
+                        <button id="task1HourBtn" disabled onclick="claim1HourTask()" class="bg-gray-700 text-gray-400 px-3 py-1.5 text-[11px] font-bold rounded-xl whitespace-nowrap opacity-60 cursor-not-allowed">
+                            LOCKED (0m/60m)
+                        </button>
+                    </div>
+
+                    <!-- 100k GIFT REVENUE BONUS -->
+                    <div class="bg-gechatCard p-3.5 rounded-2xl border border-gechatCardLight flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-amber-500 to-red-500 flex items-center justify-center text-lg">🎁</div>
+                            <div>
+                                <h4 class="text-xs font-bold">100k Gift Revenue PR Bonus</h4>
+                                <p class="text-[10px] text-gray-400">Room reached 100k+ gifts today!</p>
+                                <p id="task100kProgressText" class="text-[10px] text-gechatGold font-bold mt-0.5">Progress: 0 / 100k Coins</p>
+                                <div class="flex items-center gap-1 mt-0.5 text-[11px] text-gechatGold font-bold">
+                                    <i class="fa-solid fa-gift"></i> +20,000 Coins Bonus Reward
+                                </div>
+                            </div>
+                        </div>
+                        <button id="task100kBtn" disabled onclick="claim100kBonus()" class="bg-gray-700 text-gray-400 px-3 py-1.5 text-[11px] font-bold rounded-xl whitespace-nowrap opacity-60 cursor-not-allowed">
+                            LOCKED (&lt;100k)
+                        </button>
+                    </div>
+
+                    <!-- INVITE FRIENDS BONUS -->
+                    <div class="bg-gechatCard p-3.5 rounded-2xl border border-gechatCardLight flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 flex items-center justify-center text-lg">🤝</div>
+                            <div>
+                                <h4 class="text-xs font-bold">Invite Friends Bonus</h4>
+                                <p class="text-[10px] text-gray-400">₱10 Cash reward per active invite</p>
+                                <p class="text-[9px] text-gray-500 mt-0.5">*Active when invited gets 1k gifts</p>
+                            </div>
+                        </div>
+                        <button onclick="copyInviteLink()" class="pink-purple-btn px-3 py-1.5 text-[11px] font-bold rounded-xl whitespace-nowrap cursor-pointer pointer-events-auto">
+                            INVITE NOW
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 4: MY PROFILE, DASHBOARDS & WALLET -->
+            <section id="pageMy" class="p-3 space-y-4 hidden">
+                <div class="bg-gechatCard rounded-3xl p-4 border border-gechatCardLight relative overflow-hidden shadow-xl">
+                    <div class="flex items-center gap-3">
+                        <div class="relative">
+                            <img id="userAvatar" src="https://placehold.co/120x120/FF2E93/ffffff?text=User" class="w-16 h-16 rounded-full avatar-frame-vip object-cover transition-all">
+                            <span id="userVerifyBadge" class="absolute -bottom-1 -right-1 bg-blue-500 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] border-2 border-gechatCard" title="Identity Verified">
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <h3 id="userNameDisplay" class="text-sm font-extrabold text-white">GeChat User</h3>
+                                <button onclick="openEditProfileModal()" class="text-[9px] bg-gechatPink text-white px-2.5 py-1 rounded-full font-bold shadow hover:opacity-90 cursor-pointer pointer-events-auto">
+                                    <i class="fa-solid fa-user-pen mr-1"></i> Edit Profile
+                                </button>
+                            </div>
+                            
+                            <div class="flex items-center gap-1.5 mt-1">
+                                <span id="userGenderDisplay" class="bg-pink-500/20 text-pink-400 text-[9px] px-2 py-0.5 rounded font-bold border border-pink-500/30">♀ Female</span>
+                                <span id="userAgeDisplay" class="bg-blue-500/20 text-blue-300 text-[9px] px-2 py-0.5 rounded font-bold border border-blue-500/30">21 Yrs</span>
+                                <span class="bg-gechatPurple/30 text-gechatPurple text-[9px] px-2 py-0.5 rounded font-bold border border-gechatPurple/40">VIP 0</span>
+                            </div>
+
+                            <p class="text-[10px] text-gray-400 mt-1">ID: <span id="userIdDisplay">784920</span> • <span id="userEmailDisplay">Not Logged In</span></p>
+
+                            <!-- GOOGLE LOGIN BUTTON WITH 1K BONUS LOGIC -->
+                            <div class="mt-2">
+                                <button id="googleLoginBonusBtn" onclick="loginWithGoogleAndClaimBonus()" class="bg-gechatGold text-black text-[10px] px-3 py-1.5 rounded-full font-black shadow hover:bg-yellow-300 cursor-pointer pointer-events-auto flex items-center gap-1">
+                                    <i class="fa-brands fa-google"></i> <span id="googleBtnText">Sign in with Google (+1k Bonus)</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gechatCard p-3.5 rounded-2xl border border-gechatCardLight space-y-2">
+                    <h3 class="text-xs font-bold text-gechatGold flex items-center gap-1.5">
+                        <i class="fa-solid fa-crown text-gechatGold"></i> 3D Avatar Frame Wardrobe
+                    </h3>
+                    <div class="grid grid-cols-3 gap-2 pt-1 text-center text-[10px]">
+                        <div onclick="applyAvatarFrame('gold')" class="p-2 bg-gechatBg rounded-xl border border-yellow-500/50 cursor-pointer pointer-events-auto hover:border-yellow-400">
+                            <div class="w-8 h-8 mx-auto rounded-full avatar-frame-gold bg-yellow-600/30 mb-1"></div>
+                            <span class="font-bold text-yellow-400">3D Gold VIP</span>
+                        </div>
+                        <div onclick="applyAvatarFrame('vip')" class="p-2 bg-gechatBg rounded-xl border border-pink-500/50 cursor-pointer pointer-events-auto hover:border-pink-400">
+                            <div class="w-8 h-8 mx-auto rounded-full avatar-frame-vip bg-pink-600/30 mb-1"></div>
+                            <span class="font-bold text-pink-400">3D Neon Pink</span>
+                        </div>
+                        <div onclick="applyAvatarFrame('diamond')" class="p-2 bg-gechatBg rounded-xl border border-cyan-500/50 cursor-pointer pointer-events-auto hover:border-cyan-400">
+                            <div class="w-8 h-8 mx-auto rounded-full avatar-frame-diamond bg-cyan-600/30 mb-1"></div>
+                            <span class="font-bold text-cyan-400">3D Cyber Ocean</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-xs font-bold text-gray-300 uppercase tracking-wider">Multi-Wallet Balances & Cashout</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-gechatCard p-3 rounded-2xl border border-gechatCardLight">
+                            <div class="flex items-center justify-between text-gray-400 text-[10px] mb-1">
+                                <span>Coins (Play & Gift)</span>
+                                <i class="fa-solid fa-coins text-gechatGold"></i>
+                            </div>
+                            <div id="userCoinsVal" class="text-lg font-black text-gechatGold">0</div>
+                            <button onclick="showToast('Contact authorized seller to recharge coins!')" class="w-full mt-2 py-1 text-[10px] font-bold gold-btn rounded-lg cursor-pointer pointer-events-auto">RECHARGE</button>
+                        </div>
+
+                        <div class="bg-gechatCard p-3 rounded-2xl border border-gechatCardLight">
+                            <div class="flex items-center justify-between text-gray-400 text-[10px] mb-1">
+                                <span>Gems (Quiz & PR Earnings)</span>
+                                <i class="fa-solid fa-gem text-gechatPink"></i>
+                            </div>
+                            <div id="userGemsVal" class="text-lg font-black text-gechatPink">0</div>
+                            <button onclick="openGCashWithdrawModal()" class="w-full mt-2 py-1 text-[10px] font-bold pink-purple-btn rounded-lg cursor-pointer pointer-events-auto">WITHDRAW GCASH</button>
+                        </div>
+                    </div>
+
+                    <div id="sellerWalletBox" class="bg-gechatCardLight/50 p-3 rounded-2xl border border-gechatPurple/40 flex items-center justify-between mt-2">
+                        <div>
+                            <span class="text-[10px] text-gechatPurple font-bold">COIN SELLER INVENTORY WALLET</span>
+                            <div class="text-sm font-bold text-white"><span id="sellerInventoryVal">0</span> Coins for Sale</div>
+                        </div>
+                        <button onclick="openSellerPortal()" class="bg-gechatPurple text-white px-2.5 py-1 text-[10px] font-bold rounded-xl cursor-pointer pointer-events-auto">
+                            Seller Portal
+                        </button>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-xs font-bold text-gray-300 uppercase tracking-wider">Management & Controls</h3>
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <div onclick="openGCashWithdrawModal()" class="bg-gechatCard p-3 rounded-xl border border-gechatCardLight flex items-center gap-2 cursor-pointer pointer-events-auto hover:border-gechatPink transition">
+                            <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-xs text-white font-bold">💳</div>
+                            <div>
+                                <h4 class="text-xs font-bold">GCash Cash-out</h4>
+                                <p class="text-[9px] text-gray-400">Withdraw Gems</p>
+                            </div>
+                        </div>
+
+                        <div onclick="openAgencyDashboard()" class="bg-gechatCard p-3 rounded-xl border border-gechatCardLight flex items-center gap-2 cursor-pointer pointer-events-auto hover:border-gechatPink transition">
+                            <div class="w-8 h-8 rounded-lg pink-purple-gradient flex items-center justify-center text-xs text-white font-bold">🏢</div>
+                            <div>
+                                <h4 class="text-xs font-bold">Agency Owner</h4>
+                                <p class="text-[9px] text-gray-400">Dashboard & Hosts</p>
+                            </div>
+                        </div>
+
+                        <div onclick="openSellerPortal()" class="bg-gechatCard p-3 rounded-xl border border-gechatCardLight flex items-center gap-2 cursor-pointer pointer-events-auto hover:border-gechatPurple transition">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-xs text-white font-bold">🪙</div>
+                            <div>
+                                <h4 class="text-xs font-bold">Coin Seller Hub</h4>
+                                <p class="text-[9px] text-gray-400">Recharge Network</p>
+                            </div>
+                        </div>
+
+                        <div onclick="openAdminDashboard()" class="bg-gechatCard p-3 rounded-xl border border-gechatPink/50 flex items-center gap-2 cursor-pointer pointer-events-auto hover:border-gechatPink transition">
+                            <div class="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center text-xs text-white font-bold">🛡️</div>
+                            <div>
+                                <h4 class="text-xs font-bold text-gechatPink">Super Admin</h4>
+                                <p class="text-[9px] text-gray-400">Owner Portal</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gechatCard p-3 rounded-2xl border border-gechatCardLight space-y-2">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-gray-300">Face / ID Verification Badge</span>
+                        <span onclick="openVerificationModal()" id="verificationStatusTag" class="text-gechatPink font-semibold cursor-pointer pointer-events-auto underline">Not Verified (Tap to Scan)</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-gray-300">Invitation Referral Code</span>
+                        <span class="text-gechatGold font-mono font-bold cursor-pointer pointer-events-auto" onclick="copyInviteLink()">GC-99281 <i class="fa-solid fa-copy ml-1"></i></span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- GLOBAL BOTTOM NAVIGATION TABS -->
+        <nav class="absolute bottom-0 left-0 w-full bg-gechatCard/95 backdrop-blur-md border-t border-gechatCardLight/80 grid grid-cols-4 py-2 px-1 text-center z-40 pointer-events-auto">
+            <button onclick="switchTab('rooms')" id="navRooms" class="flex flex-col items-center gap-0.5 text-gechatPink font-bold cursor-pointer pointer-events-auto">
+                <i class="fa-solid fa-microphone-lines text-lg"></i>
+                <span class="text-[10px]">Party PR</span>
+            </button>
+
+            <button onclick="switchTab('chats')" id="navChats" class="flex flex-col items-center gap-0.5 text-gray-400 relative cursor-pointer pointer-events-auto">
+                <i class="fa-solid fa-comment-dots text-lg"></i>
+                <span class="text-[10px]">Chats</span>
+                <span class="absolute top-0 right-4 w-2 h-2 bg-gechatPink rounded-full"></span>
+            </button>
+
+            <button onclick="switchTab('task')" id="navTask" class="flex flex-col items-center gap-0.5 text-gray-400 cursor-pointer pointer-events-auto">
+                <i class="fa-solid fa-list-check text-lg"></i>
+                <span class="text-[10px]">Tasking</span>
+            </button>
+
+            <button onclick="switchTab('my')" id="navMy" class="flex flex-col items-center gap-0.5 text-gray-400 cursor-pointer pointer-events-auto">
+                <i class="fa-solid fa-user text-lg"></i>
+                <span class="text-[10px]">My</span>
+            </button>
+        </nav>
+
+        <!-- ================= MODALS & FULLSCREEN OVERLAYS ================= -->
+
+        <!-- EDIT PROFILE MODAL WITH GALLERY UPLOAD -->
+        <div id="editProfileModal" class="fixed inset-0 glass-modal z-50 hidden flex items-center justify-center p-4 pointer-events-auto">
+            <div class="bg-gechatCard border border-gechatCardLight rounded-3xl p-5 max-w-xs w-full space-y-4 shadow-2xl">
+                <div class="flex justify-between items-center border-b border-gechatCardLight pb-2">
+                    <h3 class="text-xs font-bold text-white flex items-center gap-1.5"><i class="fa-solid fa-user-pen text-gechatPink"></i> Edit Profile & Avatar</h3>
+                    <button onclick="closeEditProfileModal()" class="text-gray-400 text-sm cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <div class="space-y-3 text-xs">
+                    <div>
+                        <label class="block text-[10px] text-gray-400 mb-1">Display Name</label>
+                        <input id="editNameInput" type="text" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[10px] text-gray-400 mb-1">Gender</label>
+                            <select id="editGenderInput" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                                <option value="Female">♀ Female</option>
+                                <option value="Male">♂ Male</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-400 mb-1">Age (Taon)</label>
+                            <input id="editAgeInput" type="number" value="21" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] text-gray-400 mb-1">Upload Profile Picture (From Gallery)</label>
+                        <input id="editAvatarFileInput" type="file" accept="image/*" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-1.5 text-[11px] text-gray-300 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-gechatPink file:text-white hover:file:opacity-90 cursor-pointer pointer-events-auto">
+                    </div>
+
+                    <button onclick="saveProfileChanges()" class="w-full pink-purple-btn py-2.5 rounded-xl text-xs font-bold shadow-lg cursor-pointer pointer-events-auto">
+                        SAVE PROFILE CHANGES
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="verificationModal" class="fixed inset-0 glass-modal z-50 hidden flex items-center justify-center p-4 pointer-events-auto">
+            <div class="bg-gechatCard border border-gechatCardLight rounded-3xl p-5 max-w-xs w-full space-y-4 text-center">
+                <div class="flex justify-between items-center border-b border-gechatCardLight pb-2">
+                    <h3 class="text-xs font-bold text-white flex items-center gap-1.5"><i class="fa-solid fa-camera text-gechatPink"></i> Face Authenticator</h3>
+                    <button onclick="closeVerificationModal()" class="text-gray-400 text-sm cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <div class="relative w-48 h-48 mx-auto bg-black rounded-full overflow-hidden border-4 border-gechatPink flex items-center justify-center shadow-2xl">
+                    <video id="webcamVideo" autoplay playsinline class="w-full h-full object-cover hidden"></video>
+                    
+                    <div id="cameraPlaceholder" class="flex flex-col items-center text-gray-500">
+                        <i class="fa-solid fa-user-astronaut text-5xl mb-2 text-gechatPink animate-pulse"></i>
+                        <span class="text-[9px]">Tap Start Camera</span>
+                    </div>
+
+                    <div class="scan-line"></div>
+                </div>
+
+                <div class="space-y-1">
+                    <p id="cameraScanStatus" class="text-xs font-bold text-gechatGold">Position face in center frame</p>
+                    <p class="text-[9px] text-gray-400">System checks identity for verified host status.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <button onclick="startRealCamera()" class="w-full gold-btn py-2 rounded-xl text-xs font-bold cursor-pointer pointer-events-auto">
+                        <i class="fa-solid fa-video mr-1"></i> Start Camera & Scan Face
+                    </button>
+                    <button onclick="completeVerificationAction()" class="w-full pink-purple-btn py-2 rounded-xl text-xs font-bold cursor-pointer pointer-events-auto">
+                        Simulate Instant Verify
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PARTY ROOM OVERLAY WITH TEAL THEME & CIRCULAR LAYOUT -->
+        <div id="partyRoomOverlay" class="fixed inset-0 theme-teal z-50 hidden flex flex-col transition-all duration-300 pointer-events-auto">
+            <div class="px-3 py-2 bg-black/40 backdrop-blur-md flex items-center justify-between border-b border-teal-500/20">
+                <div class="flex items-center gap-2">
+                    <button onclick="closePartyRoom()" class="text-teal-200 text-lg pr-2 cursor-pointer pointer-events-auto"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div>
+                        <h3 class="text-xs font-bold text-teal-100 flex items-center gap-1">
+                            👑 VIP Super Party Lounge #01
+                        </h3>
+                        <p class="text-[9px] text-teal-300/80">ID: 998822 • Host: GeChat User</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-1.5">
+                    <button onclick="openMusicPlayerModal()" class="bg-indigo-600 text-white px-2 py-1 rounded-full text-[10px] font-extrabold flex items-center gap-1 shadow cursor-pointer pointer-events-auto" title="In-Room Background Music">
+                        🎵 Music
+                    </button>
+                    <button onclick="openThemeSelectorModal()" class="bg-teal-600 text-white px-2 py-1 rounded-full text-[10px] font-extrabold flex items-center gap-1 shadow cursor-pointer pointer-events-auto" title="Change Room Background">
+                        🎨 Theme
+                    </button>
+                    <button onclick="openInRoomGamesModal()" class="bg-purple-600 text-white px-2 py-1 rounded-full text-[10px] font-extrabold flex items-center gap-1 shadow cursor-pointer pointer-events-auto">
+                        🎮 Games
+                    </button>
+                    <button onclick="triggerRedPocketModal()" class="bg-red-600 text-yellow-300 px-2 py-1 rounded-full text-[10px] font-extrabold flex items-center gap-1 shadow cursor-pointer pointer-events-auto">
+                        🧧 Red
+                    </button>
+                    <button onclick="closePartyRoom()" class="text-teal-200 hover:text-white cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+            </div>
+
+            <!-- STATS PILL -->
+            <div class="bg-black/30 px-3 py-1.5 flex items-center justify-between text-[10px] border-b border-teal-500/10">
+                <div class="flex items-center gap-2 bg-black/40 px-2 py-0.5 rounded-full border border-yellow-500/30">
+                    <i class="fa-solid fa-wallet text-gechatGold"></i>
+                    <span class="text-gray-300">Coins:</span>
+                    <strong id="prUserCoinsDisplay" class="text-gechatGold font-bold">0</strong>
+                </div>
+
+                <div class="flex items-center gap-2 bg-black/40 px-2 py-0.5 rounded-full border border-pink-500/30">
+                    <i class="fa-solid fa-gem text-gechatPink"></i>
+                    <span class="text-gray-300">Gems:</span>
+                    <strong id="prUserGemsDisplay" class="text-gechatPink font-bold">0</strong>
+                </div>
+
+                <span class="text-teal-200">Rev: <strong id="roomRevenueDisplay" class="text-yellow-300">0</strong></span>
+            </div>
+
+            <!-- CIRCULAR & FLOATING PR SEATS AREA -->
+            <div class="flex-1 overflow-y-auto p-3 flex flex-col justify-center">
+                <div class="pr-circle-container space-y-3">
+                    <div class="text-center">
+                        <span class="text-[10px] tracking-widest text-teal-200 uppercase font-extrabold bg-teal-900/60 px-3 py-1 rounded-full border border-teal-400/40 shadow">
+                            ✨ 15 MIC SEATS (CIRCULAR SPACE) ✨
+                        </span>
+                    </div>
+                    <div id="micSeatsGrid" class="grid grid-cols-5 gap-2.5"></div>
+                </div>
+            </div>
+
+            <!-- CHAT & CONTROLS -->
+            <div class="bg-black/60 backdrop-blur-md p-2.5 border-t border-teal-500/20 space-y-2">
+                <div id="roomChatFeed" class="h-20 overflow-y-auto bg-black/40 rounded-xl p-2 text-[11px] space-y-1 border border-teal-500/20">
+                    <div class="text-teal-200"><span class="font-bold text-teal-300">System:</span> Welcome to Teal Party Room! Umakyat sa mic seat para mag-start ang 1hr stay timer.</div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <input id="roomChatInput" type="text" placeholder="Say something..." class="flex-1 bg-black/60 border border-teal-500/30 rounded-full px-3 py-1.5 text-xs text-white focus:outline-none focus:border-teal-400">
+                    <button onclick="sendRoomChat()" class="bg-teal-600 hover:bg-teal-500 text-white px-3.5 py-1.5 rounded-full text-xs font-bold cursor-pointer pointer-events-auto shadow">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                    <button onclick="openGiftModal()" class="gold-btn px-3 py-1.5 rounded-full text-xs font-extrabold flex items-center gap-1 shadow cursor-pointer pointer-events-auto">
+                        🎁 Gift
+                    </button>
+                </div>
+            </div>
+
+            <!-- GIFT PANEL -->
+            <div id="partyRoomGiftPanel" class="bg-gechatCard/98 border-t border-teal-500/40 p-3 space-y-2 max-h-[45vh] overflow-y-auto hidden">
+                <div class="flex justify-between items-center border-b border-gechatCardLight pb-1.5">
+                    <div>
+                        <h3 class="text-xs font-bold text-white flex items-center gap-1"><i class="fa-solid fa-gift text-gechatPink"></i> Send Luxury & Lucky Gifts</h3>
+                        <p class="text-[9px] text-gray-400">Nakataas ang upuan sa itaas para makita ang babagsakan</p>
+                    </div>
+                    <button onclick="closeGiftModal()" class="text-gray-400 text-sm cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 bg-gechatBg p-1 rounded-xl border border-gechatCardLight">
+                    <button onclick="switchGiftTab('regular')" id="tabBtnRegular" class="py-1 text-[11px] font-black rounded-lg bg-gechatPink text-white transition cursor-pointer pointer-events-auto">
+                        👑 Regular (1k-100k)
+                    </button>
+                    <button onclick="switchGiftTab('lucky')" id="tabBtnLucky" class="py-1 text-[11px] font-bold rounded-lg text-gray-400 hover:text-white transition cursor-pointer pointer-events-auto">
+                        🍀 Lucky Unli-Tap
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 text-[11px]">
+                    <div>
+                        <label class="block text-[9px] text-gray-400 mb-0.5">Target Seat (Mic 1 - 15)</label>
+                        <select id="giftTargetSeat" class="w-full bg-gechatBg border border-gechatCardLight rounded-lg p-1.5 text-[11px] text-white font-bold">
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[9px] text-gray-400 mb-0.5">Sending Mode</label>
+                        <select id="giftSendingMode" class="w-full bg-gechatBg border border-gechatCardLight rounded-lg p-1.5 text-[11px] text-white font-bold">
+                            <option value="single">Target Selected Seat</option>
+                            <option value="all">🚀 SEND TO ALL 15 MICS</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label id="quantityMultiplierLabel" class="block text-[9px] text-gray-400 font-bold">QUANTITY MULTIPLIER:</label>
+                    <div id="quantityButtonsGrid" class="grid grid-cols-7 gap-1">
+                        <button onclick="selectGiftMultiplier(1, this)" class="gift-mult-btn bg-purple-900 border border-yellow-400 rounded py-1 text-[10px] font-black text-yellow-300 cursor-pointer pointer-events-auto">x1</button>
+                        <button onclick="selectGiftMultiplier(5, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x5</button>
+                        <button onclick="selectGiftMultiplier(10, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x10</button>
+                        <button onclick="selectGiftMultiplier(20, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x20</button>
+                        <button onclick="selectGiftMultiplier(50, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x50</button>
+                        <button onclick="selectGiftMultiplier(100, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x100</button>
+                        <button onclick="selectGiftMultiplier(500, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x500</button>
+                    </div>
+                </div>
+
+                <div id="giftCatalogGrid" class="grid grid-cols-4 gap-1.5 max-h-32 overflow-y-auto"></div>
+
+                <div class="flex items-center justify-between pt-1 border-t border-gechatCardLight text-[11px]">
+                    <div class="text-gray-300">Bal: <strong id="giftModalCoinsDisplay" class="text-gechatGold">0</strong></div>
+                    <button onclick="sendGiftAction()" class="pink-purple-btn px-4 py-1.5 rounded-lg font-bold cursor-pointer pointer-events-auto shadow relative overflow-hidden">
+                        <i class="fa-solid fa-paper-plane mr-1"></i> <span id="sendGiftButtonText">SEND GIFT</span>
+                        <span id="tapCounterBadge" class="absolute top-0 right-1 bg-yellow-400 text-black font-black text-[9px] px-1.5 py-0.5 rounded-full hidden shadow-lg animate-bounce">1</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- IN-ROOM BACKGROUND MUSIC PLAYER MODAL -->
+        <div id="musicPlayerModal" class="fixed inset-0 glass-modal z-50 hidden flex items-center justify-center p-4 pointer-events-auto">
+            <div class="bg-gechatCard border border-gechatCardLight rounded-3xl p-5 max-w-xs w-full space-y-4 shadow-2xl">
+                <div class="flex justify-between items-center border-b border-gechatCardLight pb-2">
+                    <h3 class="text-xs font-bold text-white flex items-center gap-1.5"><i class="fa-solid fa-music text-indigo-400"></i> In-Room Music Player</h3>
+                    <button onclick="closeMusicPlayerModal()" class="text-gray-400 text-sm cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <div class="space-y-3 text-xs text-center">
+                    <div class="w-16 h-16 bg-gradient-to-tr from-purple-600 to-indigo-500 rounded-full flex items-center justify-center text-2xl mx-auto shadow-lg animate-pulse">
+                        🎧
+                    </div>
+                    <div>
+                        <div id="nowPlayingSong" class="font-bold text-white text-sm">Chill Lofi Beats (Room Ambient)</div>
+                        <div class="text-[10px] text-gray-400 mt-0.5">Pumili ng tugtugan para marinig ng buong room</div>
+                    </div>
+
+                    <div class="space-y-1.5 pt-1">
+                        <button onclick="playMusicTrack('Chill Lofi Beats', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3')" class="w-full py-2 bg-gechatCardLight hover:bg-indigo-600/30 rounded-xl font-bold text-left px-3 text-indigo-300 transition cursor-pointer pointer-events-auto flex justify-between items-center">
+                            <span>🎵 Chill Lofi Beats</span> <i class="fa-solid fa-play text-[10px]"></i>
+                        </button>
+                        <button onclick="playMusicTrack('Acoustic Guitars', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3')" class="w-full py-2 bg-gechatCardLight hover:bg-indigo-600/30 rounded-xl font-bold text-left px-3 text-indigo-300 transition cursor-pointer pointer-events-auto flex justify-between items-center">
+                            <span>🎸 Acoustic Guitars</span> <i class="fa-solid fa-play text-[10px]"></i>
+                        </button>
+                        <button onclick="playMusicTrack('Upbeat Party Mix', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3')" class="w-full py-2 bg-gechatCardLight hover:bg-indigo-600/30 rounded-xl font-bold text-left px-3 text-indigo-300 transition cursor-pointer pointer-events-auto flex justify-between items-center">
+                            <span>🪩 Upbeat Party Mix</span> <i class="fa-solid fa-play text-[10px]"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex gap-2 pt-2">
+                        <button onclick="pauseRoomMusic()" class="flex-1 py-2 bg-red-600/80 hover:bg-red-700 text-white font-bold rounded-xl cursor-pointer pointer-events-auto">
+                            <i class="fa-solid fa-stop mr-1"></i> I-stop / Pause
+                        </button>
+                        <button onclick="closeMusicPlayerModal()" class="flex-1 py-2 pink-purple-btn font-bold rounded-xl cursor-pointer pointer-events-auto">
+                            Isara
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PARTY ROOM THEME SELECTOR MODAL -->
+        <div id="themeSelectorModal" class="fixed inset-0 glass-modal z-50 hidden flex items-center justify-center p-4 pointer-events-auto">
+            <div class="bg-gechatCard border border-gechatCardLight rounded-3xl p-5 max-w-xs w-full space-y-4 shadow-2xl">
+                <div class="flex justify-between items-center border-b border-gechatCardLight pb-2">
+                    <h3 class="text-xs font-bold text-white flex items-center gap-1.5"><i class="fa-solid fa-palette text-gechatGold"></i> Select Party Room Theme</h3>
+                    <button onclick="closeThemeSelectorModal()" class="text-gray-400 text-sm cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <div onclick="setRoomTheme('teal')" class="p-3 bg-gradient-to-tr from-teal-950 to-black border-2 border-teal-400 rounded-2xl cursor-pointer pointer-events-auto hover:border-teal-300 text-center space-y-1">
+                        <div class="text-2xl">🌊</div>
+                        <div class="font-bold text-teal-300">Teal Breeze</div>
+                    </div>
+                    <div onclick="setRoomTheme('gold')" class="p-3 bg-gradient-to-tr from-yellow-950 to-black border-2 border-yellow-500 rounded-2xl cursor-pointer pointer-events-auto hover:border-yellow-300 text-center space-y-1">
+                        <div class="text-2xl">👑</div>
+                        <div class="font-bold text-yellow-300">VIP Gold</div>
+                    </div>
+                    <div onclick="setRoomTheme('rose')" class="p-3 bg-gradient-to-tr from-pink-950 to-black border-2 border-pink-500 rounded-2xl cursor-pointer pointer-events-auto hover:border-pink-300 text-center space-y-1">
+                        <div class="text-2xl">🌹</div>
+                        <div class="font-bold text-pink-300">Rose Garden</div>
+                    </div>
+                    <div onclick="setRoomTheme('cyber')" class="p-3 bg-gradient-to-tr from-cyan-950 to-black border-2 border-cyan-400 rounded-2xl cursor-pointer pointer-events-auto hover:border-cyan-300 text-center space-y-1">
+                        <div class="text-2xl">⚡</div>
+                        <div class="font-bold text-cyan-300">Cyber Neon</div>
+                    </div>
+                </div>
+
+                <button onclick="closeThemeSelectorModal()" class="w-full pink-purple-btn py-2 rounded-xl text-xs font-bold cursor-pointer pointer-events-auto">
+                    APPLY THEME
+                </button>
+            </div>
+        </div>
+
+        <div id="inRoomGamesModal" class="fixed inset-0 glass-modal z-50 hidden flex flex-col justify-end pointer-events-auto">
+            <div class="bg-gechatCard border-t border-gechatCardLight rounded-t-3xl p-4 space-y-3 max-h-[85vh] overflow-y-auto">
+                <div class="flex justify-between items-center border-b border-gechatCardLight/60 pb-2">
+                    <div>
+                        <h3 class="text-xs font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-gamepad text-gechatPink"></i> 3D Live Casino & Arcade Games
+                        </h3>
+                        <p class="text-[10px] text-gray-400">Pumili ng sikat na laro at manalo ng malaking coins</p>
+                    </div>
+                    <button onclick="closeInRoomGamesModal()" class="text-gray-400 text-sm cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 py-2">
+                    <div onclick="openTeenPattiGame()" class="bg-gradient-to-tr from-purple-900 via-indigo-900 to-gechatCard border-2 border-yellow-500 rounded-2xl p-3 cursor-pointer pointer-events-auto hover:border-gechatPink transition text-center shadow-lg">
+                        <div class="text-3xl mb-1 animate-pulse">🃏</div>
+                        <h4 class="text-xs font-extrabold text-yellow-300">Teen Patti Live 3D</h4>
+                        <p class="text-[9px] text-gray-300">Live Card Dealing</p>
+                    </div>
+
+                    <div onclick="openLuckyWheelGame()" class="bg-gradient-to-tr from-pink-900 via-purple-900 to-gechatCard border-2 border-yellow-400 rounded-2xl p-3 cursor-pointer pointer-events-auto hover:border-gechatPink transition text-center shadow-lg">
+                        <div class="text-3xl mb-1 animate-bounce">🎡</div>
+                        <h4 class="text-xs font-extrabold text-pink-300">Lucky Spin Wheel 100x</h4>
+                        <p class="text-[9px] text-gray-300">Big 3D Wheel Physics</p>
+                    </div>
+
+                    <div onclick="openFruitSlotGame()" class="bg-gradient-to-tr from-red-900 via-amber-900 to-gechatCard border-2 border-yellow-400 rounded-2xl p-3 cursor-pointer pointer-events-auto hover:border-gechatPink transition text-center shadow-lg">
+                        <div class="text-3xl mb-1 animate-pulse">🎰</div>
+                        <h4 class="text-xs font-extrabold text-yellow-300">Fruit Slot Machine</h4>
+                        <p class="text-[9px] text-gray-300">Rolling Reels Jackpots</p>
+                    </div>
+
+                    <div onclick="openGatesOfOlympusGame()" class="bg-gradient-to-tr from-amber-900 via-purple-900 to-gechatCard border-2 border-yellow-400 rounded-2xl p-3 cursor-pointer pointer-events-auto hover:border-gechatPink transition text-center shadow-lg">
+                        <div class="text-3xl mb-1 animate-pulse">⚡🏛️</div>
+                        <h4 class="text-xs font-extrabold text-yellow-300">Gates of Olympus 3D</h4>
+                        <p class="text-[9px] text-gray-300">500x Zeus Multipliers</p>
+                    </div>
+
+                    <div onclick="openOceanHuntGame()" class="bg-gradient-to-tr from-cyan-900 via-blue-900 to-gechatCard border-2 border-cyan-400 rounded-2xl p-3 cursor-pointer pointer-events-auto hover:border-gechatPink transition text-center shadow-lg">
+                        <div class="text-3xl mb-1 animate-bounce">🦈🌊</div>
+                        <h4 class="text-xs font-extrabold text-cyan-300">Ocean Hunt 3D</h4>
+                        <p class="text-[9px] text-gray-300">Fishing Boss Arena</p>
+                    </div>
+
+                    <div onclick="openDragonTigerGame()" class="bg-gechatBg border border-gechatCardLight rounded-2xl p-3 cursor-pointer pointer-events-auto hover:border-gechatPink transition text-center">
+                        <div class="text-3xl mb-1">🐉🐯</div>
+                        <h4 class="text-xs font-bold text-white">Dragon vs Tiger</h4>
+                        <p class="text-[9px] text-gray-400">Fast Comparison</p>
+                    </div>
+
+                    <div onclick="openColorGame()" class="bg-gechatBg border border-gechatCardLight rounded-2xl p-3 cursor-pointer pointer-events-auto hover:border-gechatPink transition text-center">
+                        <div class="text-3xl mb-1">🎨🎲</div>
+                        <h4 class="text-xs font-bold text-white">Color Game Live</h4>
+                        <p class="text-[9px] text-gray-400">Shaker & Colors</p>
+                    </div>
+
+                    <div onclick="openMinesGame()" class="bg-gechatBg border border-gechatCardLight rounded-2xl p-3 cursor-pointer pointer-events-auto hover:border-gechatPink transition text-center">
+                        <div class="text-3xl mb-1">💣💰</div>
+                        <h4 class="text-xs font-bold text-white">Mines (Granada)</h4>
+                        <p class="text-[9px] text-gray-400">Tile Multipliers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3D LIVE GIFT ANIMATION OVERLAY -->
+        <div id="liveGiftAnimOverlay" class="fixed inset-0 pointer-events-none z-50 hidden flex items-center justify-center">
+            <div id="animGiftContainer" class="bg-black/80 border-4 border-yellow-400 rounded-3xl p-6 text-center shadow-2xl animate-gift-fly max-w-xs w-full pointer-events-auto space-y-2">
+                <div id="animGiftIcon" class="text-7xl animate-bounce">🌹</div>
+                <h3 id="animGiftTitle" class="text-base font-black text-yellow-300 uppercase">ROSE SENT x1!</h3>
+                <p id="animGiftDesc" class="text-xs text-white">Naka-dagdag sa revenue at gems income!</p>
+            </div>
+        </div>
+
+        <div id="redPocketModal" class="fixed inset-0 glass-modal z-50 hidden flex items-center justify-center p-4 pointer-events-auto">
+            <div class="bg-gradient-to-b from-red-600 to-red-800 rounded-3xl p-6 text-center max-w-xs w-full shadow-2xl border-2 border-yellow-400 space-y-4 relative">
+                <button onclick="closeRedPocketModal()" class="absolute top-3 right-3 text-white text-lg cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark"></i></button>
+
+                <div class="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner">🧧</div>
+                <h3 class="text-lg font-black text-yellow-300">LUCKY RED POCKET!</h3>
+                <p class="text-xs text-white opacity-90">Host dropped a 5,000 Coins envelope for everyone in the room!</p>
+
+                <div id="redPocketTimer" class="text-2xl font-black text-yellow-300 tracking-wider">00:05</div>
+
+                <button id="claimRedPocketBtn" onclick="claimRedPocket()" class="w-full py-3 bg-yellow-400 text-red-900 font-black rounded-2xl text-sm shadow-lg hover:bg-yellow-300 transition cursor-pointer pointer-events-auto">
+                    CLAIM FREE COINS!
+                </button>
+            </div>
+        </div>
+
+        <div id="rocketOverlay" class="fixed inset-0 pointer-events-none z-50 hidden">
+            <div id="flyingRocketElem" class="absolute text-7xl animate-rocket">🚀</div>
+            <button id="catchRocketBtn" onclick="catchRocketBonus()" class="pointer-events-auto absolute bottom-24 left-1/2 -translate-x-1/2 bg-yellow-400 text-black font-extrabold px-4 py-2 rounded-full text-xs shadow-2xl animate-pulse cursor-pointer">
+                🎯 TAP TO CATCH ROCKET BONUS COINS!
+            </button>
+        </div>
+
+        <div id="luxuryOverlay" class="fixed inset-0 pointer-events-none z-50 hidden flex items-center justify-center">
+            <div id="luxuryEffectCard" class="bg-black/80 border-4 border-yellow-400 rounded-3xl p-6 text-center shadow-2xl luxury-effect-screen max-w-xs w-full pointer-events-auto space-y-3">
+                <div id="luxuryEmojiIcon" class="text-6xl animate-bounce">🏰</div>
+                <h2 id="luxuryEffectTitle" class="text-base font-black text-yellow-300 uppercase">LUXURY CASTLE EFFECT!</h2>
+                <p id="luxuryEffectDesc" class="text-xs text-white">Mega luxury gift sent across the entire app!</p>
+                <button onclick="closeLuxuryEffect()" class="gold-btn px-4 py-1.5 rounded-full text-xs font-bold mt-2 cursor-pointer pointer-events-auto">AWESOME!</button>
+            </div>
+        </div>
+
+        <div id="directChatModal" class="fixed inset-0 bg-gechatBg z-50 hidden flex flex-col pointer-events-auto">
+            <div class="px-4 py-3 bg-gechatCard flex items-center justify-between border-b border-gechatCardLight">
+                <div class="flex items-center gap-3">
+                    <button onclick="closeDirectChat()" class="text-gray-300 text-lg cursor-pointer pointer-events-auto"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div>
+                        <h3 id="chatTargetName" class="text-xs font-bold text-white">Angel_Host ✨</h3>
+                        <p id="chatTargetSub" class="text-[10px] text-gray-400">Paid Chat • 10 Gems / reply</p>
+                    </div>
+                </div>
+                <button onclick="startVoiceCall()" class="pink-purple-btn px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 cursor-pointer pointer-events-auto">
+                    <i class="fa-solid fa-phone"></i> Call (80 Gems/m)
+                </button>
+            </div>
+
+            <div id="directChatFeed" class="flex-1 overflow-y-auto p-4 space-y-3">
+                <div class="text-center text-[10px] text-gray-500 my-2">-- Anti-Spam Protected Chat System --</div>
+            </div>
+
+            <div class="p-3 bg-gechatCard border-t border-gechatCardLight flex items-center gap-2">
+                <input id="directMessageInput" type="text" placeholder="Type message (10 Gems)..." class="flex-1 bg-gechatBg border border-gechatCardLight rounded-full px-4 py-2 text-xs text-white focus:outline-none">
+                <button onclick="sendDirectMessage()" class="pink-purple-btn px-4 py-2 rounded-full text-xs font-bold cursor-pointer pointer-events-auto">
+                    Send
+                </button>
+            </div>
+        </div>
+
+        <div id="voiceCallModal" class="fixed inset-0 glass-modal z-50 hidden flex flex-col items-center justify-between p-8 pointer-events-auto">
+            <div class="text-center mt-8">
+                <span class="text-xs bg-gechatPink/20 text-gechatPink px-3 py-1 rounded-full font-bold">1-on-1 VOICE CALL ACTIVE</span>
+                <h2 id="voiceCallPartner" class="text-lg font-bold text-white mt-4">Angel_Host ✨</h2>
+                <div id="voiceCallTimer" class="text-2xl font-black text-gechatGold mt-2">00:15</div>
+            </div>
+
+            <div class="relative">
+                <img src="https://placehold.co/150x150/FF2E93/ffffff?text=Host" class="w-32 h-32 rounded-full avatar-frame-vip object-cover pulse-glow">
+            </div>
+
+            <div class="w-full max-w-xs space-y-3 mb-8">
+                <button onclick="endVoiceCall()" class="w-full py-3 bg-red-600 text-white font-bold rounded-2xl text-xs shadow-lg cursor-pointer pointer-events-auto">
+                    <i class="fa-solid fa-phone-slash mr-1"></i> END CALL
+                </button>
+            </div>
+        </div>
+
+        <!-- DYNAMIC 3D CASINO & ARCADE GAMES MODAL -->
+        <div id="gameModal" class="fixed inset-0 bg-gechatBg z-50 hidden flex flex-col pointer-events-auto">
+            <div class="p-3 bg-gechatCard flex items-center justify-between border-b border-gechatCardLight">
+                <h3 id="gameModalTitle" class="text-xs font-bold text-gechatGold flex items-center gap-2">
+                    🃏 3D Live Casino Table
+                </h3>
+                <button onclick="closeGameModal()" class="text-gray-400 cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+
+            <div id="gameCanvasArea" class="flex-1 p-3 flex flex-col justify-between items-center casino-table-felt relative overflow-hidden">
+                <div class="text-center mt-1">
+                    <span class="bg-black/60 text-gechatGold text-[10px] px-3 py-1 rounded-full border border-yellow-500/40 font-bold"><span id="tableNameHeader">3D TABLE</span> • POT: <span id="tablePot">1,500</span> Coins</span>
+                </div>
+
+                <div class="w-full max-w-xs bg-black/40 border border-yellow-600/40 rounded-3xl p-4 text-center space-y-3 backdrop-blur-md shadow-2xl">
+                    <div id="gameSubtitle" class="text-xs text-yellow-300 font-bold uppercase tracking-widest">Pumili ng taya at halaga!</div>
+                    
+                    <div class="space-y-1">
+                        <div class="text-[10px] text-gray-300 font-bold">PILIIN ANG HALAGA NG TAYA (BET AMOUNT):</div>
+                        <div class="grid grid-cols-5 gap-1.5">
+                            <button onclick="selectBetAmount(10, this)" class="bet-amt-btn bg-gechatCard border border-gechatCardLight rounded-lg py-1.5 text-[10px] font-bold text-white hover:border-yellow-400 transition cursor-pointer pointer-events-auto">₱10</button>
+                            <button onclick="selectBetAmount(50, this)" class="bet-amt-btn bg-gechatCard border border-gechatCardLight rounded-lg py-1.5 text-[10px] font-bold text-white hover:border-yellow-400 transition cursor-pointer pointer-events-auto">₱50</button>
+                            <button onclick="selectBetAmount(100, this)" class="bet-amt-btn bg-purple-900 border-2 border-yellow-400 rounded-lg py-1.5 text-[10px] font-black text-yellow-300 shadow cursor-pointer pointer-events-auto">₱100</button>
+                            <button onclick="selectBetAmount(500, this)" class="bet-amt-btn bg-gechatCard border border-gechatCardLight rounded-lg py-1.5 text-[10px] font-bold text-white hover:border-yellow-400 transition cursor-pointer pointer-events-auto">₱500</button>
+                            <button onclick="selectBetAmount(1000, this)" class="bet-amt-btn bg-gechatCard border border-gechatCardLight rounded-lg py-1.5 text-[10px] font-bold text-white hover:border-yellow-400 transition cursor-pointer pointer-events-auto">₱1K</button>
+                        </div>
+                    </div>
+
+                    <div id="cardsContainer" class="flex justify-center items-center gap-3 py-1 min-h-[90px]"></div>
+
+                    <div id="activeBetIndicator" class="bg-purple-950/80 border border-yellow-400/60 rounded-xl px-3 py-1 text-[11px] font-bold text-yellow-300">
+                        🎯 Ang iyong taya: <span id="currentBetDisplay" class="text-white">Wala pang pinipili</span>
+                    </div>
+
+                    <div id="gameResultText" class="text-xs font-bold text-gechatGreen h-5">Piliin ang iyong taya at halaga para magsimula!</div>
+
+                    <div id="gameActionButtons" class="pt-1">
+                        <button onclick="executeSelectedGameBet()" class="w-full pink-purple-btn py-2.5 rounded-2xl text-xs font-black shadow-lg cursor-pointer pointer-events-auto">
+                            MAGSIMULA NG LARO (SPIN / ROLL / DEAL)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-center bg-black/60 px-4 py-1.5 rounded-2xl border border-white/10 mb-1">
+                    <div class="text-[9px] text-gray-400">Your Coin Balance</div>
+                    <div id="gameCoinBalance" class="text-sm font-black text-gechatGold">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GCASH WITHDRAWAL MODAL -->
+        <div id="gcashWithdrawModal" class="fixed inset-0 glass-modal z-50 hidden flex items-center justify-center p-4 pointer-events-auto">
+            <div class="bg-gechatCard border border-gechatCardLight rounded-3xl p-5 max-w-xs w-full space-y-4 shadow-2xl relative z-50 pointer-events-auto">
+                <div class="flex justify-between items-center border-b border-gechatCardLight pb-2">
+                    <h3 class="text-xs font-bold text-white flex items-center gap-1">💳 GCash Withdrawal (75k = ₱240)</h3>
+                    <button onclick="closeGCashModal()" class="text-gray-400 text-sm cursor-pointer pointer-events-auto p-1"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <div class="space-y-3 text-xs">
+                    <div>
+                        <label class="block text-[10px] text-gray-400 mb-1">Gems to Convert (Min. 75,000)</label>
+                        <input id="withdrawGemsInput" type="number" placeholder="0" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2.5 text-xs text-white focus:border-gechatPink outline-none pointer-events-auto">
+                        <p class="text-[9px] text-gechatGreen mt-1">Rate: 75,000 Gems = ₱240.00 GCash</p>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] text-gray-400 mb-1">GCash Number</label>
+                        <input id="withdrawGCashNum" type="text" placeholder="0917XXXXXXX" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2.5 text-xs text-white focus:border-gechatPink outline-none pointer-events-auto">
+                    </div>
+                    <button onclick="submitGCashWithdraw()" class="w-full pink-purple-btn py-3 rounded-xl text-xs font-extrabold cursor-pointer pointer-events-auto">
+                        SUBMIT ₱240 WITHDRAWAL
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AGENCY OWNER DASHBOARD -->
+        <div id="agencyModal" class="fixed inset-0 bg-gechatBg z-50 hidden flex flex-col pointer-events-auto">
+            <div class="p-3 bg-gechatCard flex items-center justify-between border-b border-gechatCardLight">
+                <h3 class="text-xs font-bold text-white flex items-center gap-2">🏢 Agency Owner Dashboard</h3>
+                <button onclick="closeAgencyDashboard()" class="text-gray-400 cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+                <div class="bg-gechatCard p-4 rounded-2xl border border-gechatGold/50 space-y-2">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xs font-bold text-gechatGold flex items-center gap-1.5"><i class="fa-solid fa-wallet"></i> Agency Commission Balance</h4>
+                        <span class="text-[9px] bg-yellow-500/20 text-yellow-300 px-2 py-0.5 rounded-full font-bold">10% Cut</span>
+                    </div>
+                    <div class="text-2xl font-black text-gechatGold" id="agencyCommissionDisplay">₱2,090.00</div>
+                    <p class="text-[9px] text-gray-400">Kabuuan ng komisyon mula sa mga host at regalo sa iyong agency.</p>
+                </div>
+
+                <div class="bg-gechatCard p-4 rounded-2xl border border-gechatPink/40 space-y-2">
+                    <h4 class="text-xs font-bold text-gechatPink">Agency Recruitment Invite Link</h4>
+                    <input readonly type="text" value="https://gechat.app/agency/join?ref=AG-9988" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-[10px] text-gray-300">
+                </div>
+
+                <div class="bg-gechatCard p-4 rounded-2xl border border-yellow-500/50 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xs font-bold text-yellow-300 flex items-center gap-1.5"><i class="fa-solid fa-user-plus"></i> Mga Nais Sumali sa Agency (<span id="agencyJoinRequestsCount">1</span>)</h4>
+                    </div>
+                    
+                    <div id="agencyJoinRequestsList" class="space-y-2">
+                        <div class="bg-gechatBg p-2.5 rounded-xl border border-gechatCardLight flex justify-between items-center">
+                            <div>
+                                <div class="font-bold text-white">Maria_Voice (ID: 661902)</div>
+                                <div class="text-[9px] text-gray-400">Nais sumali bilang Host sa iyong Agency</div>
+                            </div>
+                            <div class="flex gap-1.5">
+                                <button onclick="agencyAcceptJoinRequest('661902', 'Maria_Voice')" class="bg-green-600 hover:bg-green-700 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold cursor-pointer pointer-events-auto">ACCEPT</button>
+                                <button onclick="agencyRejectJoinRequest('661902')" class="bg-red-600 hover:bg-red-700 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold cursor-pointer pointer-events-auto">REJECT</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gechatCard p-4 rounded-2xl border border-gechatCardLight space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xs font-bold text-white">📋 Listahan ng mga Active Hosts (<span id="hostCount">2</span>)</h4>
+                        <span class="text-[9px] text-gechatGreen font-semibold">Live Monitoring</span>
+                    </div>
+                    
+                    <div id="activeHostsListContainer" class="space-y-2 text-xs">
+                        <div class="bg-gechatBg p-2.5 rounded-xl border border-gechatCardLight flex justify-between items-center">
+                            <div>
+                                <div class="font-bold text-white">Angel_Host ✨</div>
+                                <div class="text-[9px] text-gray-400">ID: 449102 • Status: Online in PR</div>
+                            </div>
+                            <span class="text-[10px] text-gechatGold font-bold">₱1,250 Comis.</span>
+                        </div>
+
+                        <div class="bg-gechatBg p-2.5 rounded-xl border border-gechatCardLight flex justify-between items-center">
+                            <div>
+                                <div class="font-bold text-white">Mark_Gamer 🎮</div>
+                                <div class="text-[9px] text-gray-400">ID: 883911 • Status: Voice Room</div>
+                            </div>
+                            <span class="text-[10px] text-gechatGold font-bold">₱840 Comis.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUPER ADMIN CONTROL PORTAL (UPDATED WITH COIN SENDER, INVITE/ACCEPT AGENCY, & AGENTS/USERS ACCESS) -->
+        <div id="adminModal" class="fixed inset-0 bg-gechatBg z-50 hidden flex flex-col pointer-events-auto">
+            <div class="p-3 bg-red-950 flex items-center justify-between border-b border-red-800">
+                <h3 class="text-xs font-bold text-red-200 flex items-center gap-2">🛡️ Super Admin Control Portal</h3>
+                <button onclick="closeAdminDashboard()" class="text-gray-400 cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+                
+                <!-- 1. GCASH WITHDRAWAL RECORDS & REQUESTS -->
+                <div class="bg-gechatCard p-4 rounded-2xl border border-gechatPink/50 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xs font-bold text-gechatPink flex items-center gap-1.5"><i class="fa-solid fa-wallet"></i> GCash Withdrawal Records & Requests</h4>
+                        <span id="withdrawQueueCountBadge" class="text-[9px] bg-pink-500/20 text-pink-400 px-2 py-0.5 rounded-full font-bold">1 Pending</span>
+                    </div>
+                    
+                    <div id="adminWithdrawQueueList" class="space-y-2">
+                        <div class="bg-gechatBg p-2.5 rounded-xl border border-gechatCardLight flex justify-between items-center">
+                            <div>
+                                <div class="font-bold text-white">GeChat User (ID: 784920)</div>
+                                <div class="text-[9px] text-gray-400">GCash: 09171234567 | 75,000 Gems (₱240.00)</div>
+                            </div>
+                            <div class="flex gap-1.5">
+                                <button onclick="adminApproveWithdrawal('784920', 240)" class="bg-green-600 hover:bg-green-700 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold cursor-pointer pointer-events-auto">ACCEPT</button>
+                                <button onclick="adminRejectWithdrawal('784920')" class="bg-red-600 hover:bg-red-700 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold cursor-pointer pointer-events-auto">REJECT</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. COIN SENDER (USER ID, AMOUNT, SEND) PARA SA SELLER -->
+                <div class="bg-gechatCard p-4 rounded-2xl border border-yellow-500/50 space-y-3">
+                    <h4 class="text-xs font-bold text-yellow-300 flex items-center gap-1.5"><i class="fa-solid fa-coins"></i> Super Admin Coin Sender (Seller Load)</h4>
+                    <div class="space-y-2">
+                        <div>
+                            <label class="block text-[10px] text-gray-400 mb-1">Target User ID (Seller ID):</label>
+                            <input id="adminSellerUserId" type="text" placeholder="Ilagay ang User ID (e.g. 784920)" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-400 mb-1">Amount (Coins):</label>
+                            <input id="adminCoinAmount" type="number" placeholder="Ilagay ang bilang ng coins na ise-send" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                        </div>
+                        <button onclick="adminSendCoinsToSeller()" class="w-full gold-btn py-2.5 rounded-xl text-xs font-black cursor-pointer pointer-events-auto">
+                            SEND COINS TO SELLER
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. AGENCY OWNER INVITE & ACCEPT -->
+                <div class="bg-gechatCard p-4 rounded-2xl border border-gechatPurple/50 space-y-3">
+                    <h4 class="text-xs font-bold text-gechatPurple flex items-center gap-1.5"><i class="fa-solid fa-building-user"></i> Agency Owner Invite & Accept Management</h4>
+                    
+                    <div class="space-y-2 border-b border-gechatCardLight pb-3">
+                        <label class="block text-[10px] text-gray-400 mb-1">Invite New Agency Owner (User ID / Email):</label>
+                        <div class="flex gap-2">
+                            <input id="adminInviteAgencyInput" type="text" placeholder="Ilagay ang User ID o Email" class="flex-1 bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                            <button onclick="adminInviteAgencyOwner()" class="pink-purple-btn px-4 py-2 rounded-xl text-xs font-bold cursor-pointer pointer-events-auto">INVITE</button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 pt-1">
+                        <div class="text-[10px] text-gray-300 font-bold">Pending Agency Owner Requests:</div>
+                        <div id="adminAgencyRequestsList" class="space-y-2">
+                            <div class="bg-gechatBg p-2.5 rounded-xl border border-gechatCardLight flex justify-between items-center">
+                                <div>
+                                    <div class="font-bold text-white">Applicant: User ID 992104</div>
+                                    <div class="text-[9px] text-gray-400">Nais maging Agency Owner</div>
+                                </div>
+                                <div class="flex gap-1.5">
+                                    <button onclick="adminAcceptAgencyOwner('992104')" class="bg-green-600 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold cursor-pointer pointer-events-auto">ACCEPT</button>
+                                    <button onclick="adminRejectAgencyOwner('992104')" class="bg-red-600 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold cursor-pointer pointer-events-auto">REJECT</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. AGENTS & USERS ACCESS CONTROL -->
+                <div class="bg-gechatCard p-4 rounded-2xl border border-cyan-500/50 space-y-3">
+                    <h4 class="text-xs font-bold text-cyan-300 flex items-center gap-1.5"><i class="fa-solid fa-users-gear"></i> GeChat Agents & Users Super Access</h4>
+                    <p class="text-[10px] text-gray-400">Direktang pamamahala at access sa lahat ng rehistradong agents at users sa platform.</p>
+                    <div class="grid grid-cols-2 gap-2 pt-1">
+                        <button onclick="adminOpenManageAgents()" class="py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold cursor-pointer pointer-events-auto shadow">
+                            <i class="fa-solid fa-user-tie mr-1"></i> Manage Agents
+                        </button>
+                        <button onclick="adminOpenManageUsers()" class="py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold cursor-pointer pointer-events-auto shadow">
+                            <i class="fa-solid fa-users mr-1"></i> Manage Users
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SELLER PORTAL -->
+        <div id="sellerPortalModal" class="fixed inset-0 bg-gechatBg z-50 hidden flex flex-col pointer-events-auto">
+            <div class="p-3 bg-gechatCard flex items-center justify-between border-b border-gechatCardLight">
+                <h3 class="text-xs font-bold text-white flex items-center gap-2">🪙 Authorized Coin Seller Portal</h3>
+                <button onclick="closeSellerPortal()" class="text-gray-400 cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="p-4 space-y-4 text-xs">
+                <div class="bg-gechatCard p-4 rounded-2xl border border-gechatPurple/40 space-y-3">
+                    <h4 class="text-xs font-bold text-gechatPurple">Transfer Coins to Buyer / User</h4>
+                    
+                    <div>
+                        <label class="block text-[10px] text-gray-400 mb-1">Target User ID (Buyer ID):</label>
+                        <input id="sellerTargetUser" type="text" placeholder="Ilagay ang User ID (e.g. 784920)" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] text-gray-400 mb-1">Coin Amount:</label>
+                        <input id="sellerCoinsAmount" type="number" placeholder="Bilang ng coins na ise-send" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                    </div>
+
+                    <button onclick="sellerTransferCoins()" class="w-full pink-purple-btn py-2.5 rounded-xl text-xs font-bold cursor-pointer pointer-events-auto">
+                        TRANSFER COINS TO BUYER
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="toastNotification" class="fixed top-12 left-1/2 -translate-x-1/2 bg-gechatPink text-white px-4 py-2 rounded-full text-xs font-bold shadow-2xl z-50 hidden transition-all duration-300">
+            Notification text
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT & FIREBASE CLOUD SETUP -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAzN4grNF1j8eK18r9unvz1SjXjhiOMPQk",
+            authDomain: "gechat-pro.firebaseapp.com",
+            projectId: "gechat-pro",
+            storageBucket: "gechat-pro.appspot.com",
+            messagingSenderId: "632424830618",
+            appId: "1:632424830618:web:e5bbfd6e4940483a133123",
+            measurementId: "G-JS3RMT91F1"
+        };
+
+        try {
+            firebase.initializeApp(firebaseConfig);
+            var auth = firebase.auth();
+            var db = firebase.firestore();
+        } catch (e) {
+            console.log("Firebase initialized or running preview.");
+        }
+
+        const state = {
+            uid: 'guest_user',
+            coins: 0,
+            gems: 80000,
+            sellerInventory: 50000,
+            userId: 784920,
+            userName: "GeChat User",
+            userGender: "Female",
+            userAge: 21,
+            userEmail: "Not Logged In",
+            userAvatarUrl: "https://placehold.co/120x120/FF2E93/ffffff?text=User",
+            userFrame: 'avatar-frame-vip',
+            isVerified: false,
+            currentTab: 'rooms',
+            selectedGiftCost: 1000,
+            selectedGiftName: 'Sports Car',
+            selectedGiftEmoji: '🏎️',
+            selectedGiftMultiplier: 1,
+            giftModeTab: 'regular',
+            seatOccupants: {}, 
+            isInSeat: false,
+            mySeatNumber: null,
+            roomRevenue: 0,
+            seatRevenues: {},
+            seatMuted: {},
+            currentPlayingAudio: null,
+            currentGame: 'Teen Patti',
+            selectedPlayerBetOption: null, 
+            selectedBetAmount: 100, 
+            mediaStream: null,
+            prStaySeconds: 0,
+            is1HourTaskClaimed: false,
+            is100kBonusClaimed: false,
+            prTimerInterval: null,
+            withdrawRequests: [],
+            hasClaimedLoginBonus: false,
+            quizQuestions: [],
+            currentQuizIndex: 0,
+            todayQuizAnsweredCount: 0,
+            lastQuizDate: "",
+            sessionQuizGems: 0,
+            isQuizActive: false,
+            roomTheme: 'teal',
+            luckyTapCount: 0,
+            joinedAgencyCode: "",
+            agencyCommission: 2090.00
+        };
+
+        const regularLuxuryGifts = [
+            { cost: 1000, name: 'Sports Car', emoji: '🏎️' },
+            { cost: 2500, name: 'Diamond Ring', emoji: '💍' },
+            { cost: 5000, name: 'Rocket', emoji: '🚀' },
+            { cost: 15000, name: 'Luxury Yacht', emoji: '🛥️' },
+            { cost: 30000, name: 'Dragon Phoenix', emoji: '🐉🔥' },
+            { cost: 50000, name: 'Private Jet', emoji: '✈️' },
+            { cost: 80000, name: 'Magic Castle', emoji: '🏰✨' },
+            { cost: 100000, name: 'Golden Kingdom', emoji: '👑🏯' }
+        ];
+
+        const luckyMysteryGifts = [
+            { cost: 50, name: 'Lucky Clover Box', emoji: '🍀🎁' },
+            { cost: 100, name: 'Mystery Star Pouch', emoji: '⭐💰' },
+            { cost: 500, name: 'Lucky Diamond Chest', emoji: '💎📦' },
+            { cost: 1000, name: 'Dragon Fortune Egg', emoji: '🐉🥚' }
+        ];
+
+        const masterQuizPool = [
+            { cat: "SCIENCE", q: "Ano ang pinakamalapit na planeta sa Araw?", opts: ["Venus", "Earth", "Mercury", "Mars"], corr: 2 },
+            { cat: "HISTORY", q: "Sino ang pambansang bayani ng Pilipinas?", opts: ["Andres Bonifacio", "Dr. Jose Rizal", "Apolinario Mabini", "Emilio Aguinaldo"], corr: 1 },
+            { cat: "SCIENCE", q: "Ano ang chemical formula ng Tubig?", opts: ["CO2", "H2O", "O2", "NaCl"], corr: 1 },
+            { cat: "HISTORY", q: "Taon kung kailan idineklara ang Kalayaan ng Pilipinas?", opts: ["1896", "1898", "1946", "1901"], corr: 1 },
+            { cat: "SCIENCE", q: "Anong gas ang pangunahing nilalanghap ng tao para mabuhay?", opts: ["Carbon Dioxide", "Oxygen", "Nitrogen", "Hydrogen"], corr: 1 },
+            { cat: "SCIENCE", q: "Ilang porsyento ng mundo ang natatakpan ng tubig?", opts: ["50%", "71%", "85%", "60%"], corr: 1 },
+            { cat: "HISTORY", q: "Sino ang unang pangulo ng Republika ng Pilipinas?", opts: ["Emilio Aguinaldo", "Manuel Quezon", "Jose Laurel", "Sergio Osmeña"], corr: 0 },
+            { cat: "SCIENCE", q: "Anong organ ang nagpapadala ng dugo sa buong katawan ng tao?", opts: ["Utak", "Atay", "Puso", "Baga"], corr: 2 },
+            { cat: "HISTORY", q: "Saang probinsya ipinanganak si Dr. Jose Rizal?", opts: ["Cavite", "Laguna", "Batangas", "Bulacan"], corr: 1 },
+            { cat: "SCIENCE", q: "Ano ang tawag sa pinakamalaking planeta sa ating Solar System?", opts: ["Saturn", "Mars", "Jupiter", "Neptune"], corr: 2 }
+        ];
+
+        function saveToLocalStorage() {
+            const userData = {
+                coins: state.coins,
+                gems: state.gems,
+                sellerInventory: state.sellerInventory,
+                userId: state.userId,
+                userName: state.userName,
+                userGender: state.userGender,
+                userAge: state.userAge,
+                userEmail: state.userEmail,
+                userAvatarUrl: state.userAvatarUrl,
+                userFrame: state.userFrame,
+                isVerified: state.isVerified,
+                prStaySeconds: state.prStaySeconds,
+                is1HourTaskClaimed: state.is1HourTaskClaimed,
+                is100kBonusClaimed: state.is100kBonusClaimed,
+                todayQuizAnsweredCount: state.todayQuizAnsweredCount,
+                lastQuizDate: state.lastQuizDate,
+                withdrawRequests: state.withdrawRequests,
+                hasClaimedLoginBonus: state.hasClaimedLoginBonus,
+                seatOccupants: state.seatOccupants,
+                seatRevenues: state.seatRevenues,
+                seatMuted: state.seatMuted,
+                roomRevenue: state.roomRevenue,
+                roomTheme: state.roomTheme,
+                joinedAgencyCode: state.joinedAgencyCode,
+                agencyCommission: state.agencyCommission
+            };
+            localStorage.setItem('gechat_local_user_data', JSON.stringify(userData));
+        }
+
+        function loadFromLocalStorage() {
+            const savedData = localStorage.getItem('gechat_local_user_data');
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    state.coins = data.coins || 0;
+                    state.gems = data.gems !== undefined ? data.gems : 80000;
+                    state.sellerInventory = data.sellerInventory !== undefined ? data.sellerInventory : 50000;
+                    state.userId = data.userId || state.userId;
+                    state.userName = data.userName || state.userName;
+                    state.userGender = data.userGender || state.userGender;
+                    state.userAge = data.userAge || state.userAge;
+                    state.userEmail = data.userEmail || state.userEmail;
+                    state.userAvatarUrl = data.userAvatarUrl || state.userAvatarUrl;
+                    state.userFrame = data.userFrame || state.userFrame;
+                    state.isVerified = data.isVerified || false;
+                    state.prStaySeconds = data.prStaySeconds || 0;
+                    state.is1HourTaskClaimed = data.is1HourTaskClaimed || false;
+                    state.is100kBonusClaimed = data.is100kBonusClaimed || false;
+                    state.seatOccupants = data.seatOccupants || {};
+                    state.seatRevenues = data.seatRevenues || {};
+                    state.seatMuted = data.seatMuted || {};
+                    state.roomRevenue = data.roomRevenue || 0;
+                    state.roomTheme = data.roomTheme || 'teal';
+                    state.joinedAgencyCode = data.joinedAgencyCode || "";
+                    state.agencyCommission = data.agencyCommission !== undefined ? data.agencyCommission : 2090.00;
+                    
+                    const todayStr = new Date().toDateString();
+                    if (data.lastQuizDate === todayStr) {
+                        state.todayQuizAnsweredCount = data.todayQuizAnsweredCount || 0;
+                        state.lastQuizDate = data.lastQuizDate;
+                    } else {
+                        state.todayQuizAnsweredCount = 0;
+                        state.lastQuizDate = todayStr;
+                    }
+
+                    state.withdrawRequests = data.withdrawRequests || [];
+                    state.hasClaimedLoginBonus = data.hasClaimedLoginBonus || false;
+                } catch (e) {}
+            }
+        }
+
+        function submitUserJoinAgency() {
+            const agencyCode = document.getElementById('userJoinAgencyIdInput').value.trim();
+            if (!agencyCode) {
+                showToast('⚠️ Pakilagay ang Agency Code para makapag-apply!');
+                return;
+            }
+            state.joinedAgencyCode = agencyCode;
+            saveToLocalStorage();
+            updateUIState();
+            showToast(`🎉 Tagumpay! Naipadala na ang iyong kahilingan na sumali sa agency (${agencyCode}).`);
+            document.getElementById('userJoinAgencyIdInput').value = '';
+        }
+
+        function loginWithGoogleAndClaimBonus() {
+            showToast("Google Login simulation mode active.");
+            simulateLocalGoogleBonus();
+        }
+
+        function simulateLocalGoogleBonus() {
+            if (state.hasClaimedLoginBonus) {
+                showToast('⚠️ Na-claim mo na ang bonus na ito dati pa!');
+            } else {
+                state.coins += 1000;
+                state.hasClaimedLoginBonus = true;
+                saveToLocalStorage();
+                updateUIState();
+                showToast('🎉 Tagumpay! +1,000 Coins Login Bonus added to wallet!');
+            }
+        }
+
+        function startDailyQuiz() {
+            const todayStr = new Date().toDateString();
+            if (state.lastQuizDate !== todayStr) {
+                state.todayQuizAnsweredCount = 0;
+                state.lastQuizDate = todayStr;
+            }
+
+            if (state.todayQuizAnsweredCount >= 10) {
+                showToast('⚠️ Naubos mo na ang 10 beses na pagsagot sa trivia ngayong araw!');
+                finishDailyQuizMaxed();
+                return;
+            }
+
+            state.quizQuestions = [...masterQuizPool].sort(() => 0.5 - Math.random()).slice(0, 10);
+            state.currentQuizIndex = 0;
+            state.sessionQuizGems = 0;
+            state.isQuizActive = true;
+            showCurrentQuizQuestion();
+        }
+
+        function showCurrentQuizQuestion() {
+            if (state.currentQuizIndex >= state.quizQuestions.length || state.todayQuizAnsweredCount >= 10) {
+                finishDailyQuiz();
+                return;
+            }
+            const qData = state.quizQuestions[state.currentQuizIndex];
+            document.getElementById('quizCategoryText').innerText = `KATEGORYA: ${qData.cat} (Tanong ${state.todayQuizAnsweredCount + 1}/10)`;
+            document.getElementById('quizQuestionText').innerText = qData.q;
+
+            const container = document.getElementById('quizOptionsContainer');
+            container.innerHTML = '';
+            document.getElementById('quizResultMsg').innerText = '';
+
+            qData.opts.forEach((optText, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full py-2 bg-gechatCardLight hover:bg-gechatPink/30 border border-gechatCardLight rounded-xl text-xs font-bold text-left px-3 text-white transition cursor-pointer pointer-events-auto";
+                btn.innerText = `${String.fromCharCode(65 + idx)}. ${optText}`;
+                btn.onclick = () => answerQuizQuestion(idx);
+                container.appendChild(btn);
+            });
+        }
+
+        function answerQuizQuestion(selectedIndex) {
+            if (!state.isQuizActive) return;
+            const qData = state.quizQuestions[state.currentQuizIndex];
+            const resultMsg = document.getElementById('quizResultMsg');
+            document.querySelectorAll('#quizOptionsContainer button').forEach(b => b.disabled = true);
+            
+            const todayStr = new Date().toDateString();
+            if (state.lastQuizDate !== todayStr) {
+                state.todayQuizAnsweredCount = 0;
+                state.lastQuizDate = todayStr;
+            }
+
+            if (state.todayQuizAnsweredCount >= 10) {
+                showToast('⚠️ Naabot mo na ang limit na 10 beses sa isang araw.');
+                finishDailyQuiz();
+                return;
+            }
+
+            state.todayQuizAnsweredCount++;
+
+            if (selectedIndex === qData.corr) {
+                state.gems += 5; 
+                state.sessionQuizGems += 5;
+                resultMsg.className = "text-center text-xs font-bold text-gechatGreen pt-1";
+                resultMsg.innerText = "🎉 Tama! +5 Gems nadagdag sa iyong wallet!";
+            } else {
+                resultMsg.className = "text-center text-xs font-bold text-red-400 pt-1";
+                resultMsg.innerText = `❌ Mali! Ang tamang sagot ay: ${qData.opts[qData.corr]}`;
+            }
+            
+            saveUserDataToCloud();
+            updateUIState();
+            
+            setTimeout(() => {
+                if (state.todayQuizAnsweredCount >= 10) {
+                    finishDailyQuiz();
+                } else {
+                    state.currentQuizIndex++;
+                    showCurrentQuizQuestion();
+                }
+            }, 1400);
+        }
+
+        function finishDailyQuiz() {
+            state.isQuizActive = false;
+            document.getElementById('quizCategoryText').innerText = "TAPOS NA ANG TRIVIA NGAYONG ARAW!";
+            document.getElementById('quizQuestionText').innerText = `Natapos mo na ang limit na 10 beses na pagsagot. Kabuuang nakuha: +${state.sessionQuizGems} Gems!`;
+            document.getElementById('quizOptionsContainer').innerHTML = `<div class="p-3 bg-gechatBg border border-gechatGold/40 rounded-xl text-center text-xs text-gechatGold font-bold">💎 Nakapasok na sa iyong wallet ang mga napanalunan mong gems! Bumalik bukas ulit.</div>`;
+        }
+
+        function finishDailyQuizMaxed() {
+            state.isQuizActive = false;
+            document.getElementById('quizCategoryText').innerText = "LIMIT NAABOT (10/10)";
+            document.getElementById('quizQuestionText').innerText = "Nagamit mo na ang iyong 10 beses na pag-quiz ngayong araw. Bumalik bukas para sa panibagong 10 try!";
+            document.getElementById('quizOptionsContainer').innerHTML = `<div class="p-3 bg-gechatBg border border-gechatCardLight rounded-xl text-center text-xs text-gray-400 font-bold">🔒 Locked hanggang bukas</div>`;
+        }
+
+        function saveUserDataToCloud() {
+            saveToLocalStorage();
+        }
+
+        window.onload = function() {
+            loadFromLocalStorage();
+            renderMicSeats();
+            updateUIState();
+            startPRStayTimer();
+        };
+
+        function startPRStayTimer() {
+            if (state.prTimerInterval) clearInterval(state.prTimerInterval);
+            state.prTimerInterval = setInterval(() => {
+                let inAnySeat = false;
+                for (let s in state.seatOccupants) {
+                    if (state.seatOccupants[s].name === state.userName) {
+                        inAnySeat = true;
+                        break;
+                    }
+                }
+
+                if (inAnySeat && !state.is1HourTaskClaimed) {
+                    state.prStaySeconds++;
+                    saveToLocalStorage();
+                }
+
+                updateTasksUI();
+            }, 1000);
+        }
+
+        function updateTasksUI() {
+            const totalMinutes = Math.floor(state.prStaySeconds / 60);
+            const progressText = document.getElementById('task1HourProgressText');
+            const claimBtn = document.getElementById('task1HourBtn');
+
+            if (progressText) {
+                progressText.innerText = `Progress: ${Math.min(totalMinutes, 60)}m / 60m`;
+            }
+
+            if (claimBtn) {
+                if (state.is1HourTaskClaimed) {
+                    claimBtn.innerText = "CLAIMED ✓";
+                    claimBtn.disabled = true;
+                    claimBtn.className = "bg-green-600 text-white px-3 py-1.5 text-[11px] font-bold rounded-xl whitespace-nowrap opacity-80 cursor-not-allowed";
+                } else if (totalMinutes >= 60) {
+                    claimBtn.innerText = "CLAIM REWARD";
+                    claimBtn.disabled = false;
+                    claimBtn.className = "gold-btn px-3 py-1.5 text-[11px] font-black rounded-xl whitespace-nowrap cursor-pointer pointer-events-auto";
+                } else {
+                    claimBtn.innerText = `LOCKED (${totalMinutes}m/60m)`;
+                    claimBtn.disabled = true;
+                    claimBtn.className = "bg-gray-700 text-gray-400 px-3 py-1.5 text-[11px] font-bold rounded-xl whitespace-nowrap opacity-60 cursor-not-allowed";
+                }
+            }
+
+            const progress100kText = document.getElementById('task100kProgressText');
+            const claim100kBtn = document.getElementById('task100kBtn');
+
+            if (progress100kText) {
+                progress100kText.innerText = `Progress: ${state.roomRevenue.toLocaleString()} / 100k Coins`;
+            }
+
+            if (claim100kBtn) {
+                if (state.is100kBonusClaimed) {
+                    claim100kBtn.innerText = "CLAIMED ✓";
+                    claim100kBtn.disabled = true;
+                    claim100kBtn.className = "bg-green-600 text-white px-3 py-1.5 text-[11px] font-bold rounded-xl whitespace-nowrap opacity-80 cursor-not-allowed";
+                } else if (state.roomRevenue >= 100000) {
+                    claim100kBtn.innerText = "CLAIM BONUS";
+                    claim100kBtn.disabled = false;
+                    claim100kBtn.className = "gold-btn px-3 py-1.5 text-[11px] font-black rounded-xl whitespace-nowrap cursor-pointer pointer-events-auto";
+                } else {
+                    claim100kBtn.innerText = `LOCKED (<100k)`;
+                    claim100kBtn.disabled = true;
+                    claim100kBtn.className = "bg-gray-700 text-gray-400 px-3 py-1.5 text-[11px] font-bold rounded-xl whitespace-nowrap opacity-60 cursor-not-allowed";
+                }
+            }
+        }
+
+        function claim1HourTask() {
+            const totalMinutes = Math.floor(state.prStaySeconds / 60);
+            if (totalMinutes >= 60 && !state.is1HourTaskClaimed) {
+                state.is1HourTaskClaimed = true;
+                state.gems += 500;
+                saveToLocalStorage();
+                updateUIState();
+                updateTasksUI();
+                showToast('🎉 Tagumpay! +500 Gems naidagdag sa iyong wallet!');
+            } else {
+                showToast('⚠️ Kailangan munang makumpleto ang 60 minutes sa mic seat bago ma-claim.');
+            }
+        }
+
+        function claim100kBonus() {
+            if (state.roomRevenue >= 100000 && !state.is100kBonusClaimed) {
+                state.is100kBonusClaimed = true;
+                state.coins += 20000;
+                saveToLocalStorage();
+                updateUIState();
+                updateTasksUI();
+                showToast('🎉 Tagumpay! +20,000 Coins Bonus Reward naidagdag sa iyong wallet!');
+            } else {
+                showToast('⚠️ Kailangan munang umabot sa 100k+ gift revenue ang room bago ma-claim.');
+            }
+        }
+
+        function updateUIState() {
+            document.getElementById('topCoinsDisplay').innerText = state.coins.toLocaleString();
+            document.getElementById('topGemsDisplay').innerText = state.gems.toLocaleString();
+            document.getElementById('userCoinsVal').innerText = state.coins.toLocaleString();
+            document.getElementById('userGemsVal').innerText = state.gems.toLocaleString();
+            document.getElementById('sellerInventoryVal').innerText = state.sellerInventory.toLocaleString();
+            document.getElementById('giftModalCoinsDisplay').innerText = state.coins.toLocaleString();
+            document.getElementById('gameCoinBalance').innerText = state.coins.toLocaleString();
+            document.getElementById('userNameDisplay').innerText = state.userName;
+            document.getElementById('userEmailDisplay').innerText = state.userEmail;
+            document.getElementById('userGenderDisplay').innerText = (state.userGender === 'Female' ? '♀ Female' : '♂ Male');
+            document.getElementById('userAgeDisplay').innerText = `${state.userAge} Yrs`;
+            document.getElementById('roomHostDisplay').innerText = `Host: ${state.userName} (ID: ${state.userId})`;
+            document.getElementById('roomRevenueDisplay').innerText = state.roomRevenue.toLocaleString();
+            document.getElementById('roomRevenueCount').innerText = state.roomRevenue.toLocaleString();
+            document.getElementById('prUserCoinsDisplay').innerText = state.coins.toLocaleString();
+            document.getElementById('prUserGemsDisplay').innerText = state.gems.toLocaleString();
+            
+            const commDisplay = document.getElementById('agencyCommissionDisplay');
+            if (commDisplay) {
+                commDisplay.innerText = `₱${state.agencyCommission.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            }
+
+            const joinBadge = document.getElementById('joinAgencyStatusBadge');
+            if (joinBadge) {
+                if (state.joinedAgencyCode) {
+                    joinBadge.innerText = `Joined (${state.joinedAgencyCode})`;
+                    joinBadge.className = "text-[10px] bg-green-500/20 text-green-300 font-bold px-2 py-0.5 rounded-full border border-green-500/40";
+                } else {
+                    joinBadge.innerText = "Not Joined";
+                    joinBadge.className = "text-[10px] bg-yellow-500/20 text-yellow-300 font-bold px-2 py-0.5 rounded-full border border-yellow-500/40";
+                }
+            }
+
+            const badge = document.getElementById('quizCounterBadge');
+            if (badge) {
+                badge.innerText = `${Math.min(state.todayQuizAnsweredCount, 10)}/10 Done`;
+            }
+
+            const avatarImg = document.getElementById('userAvatar');
+            if(avatarImg) { avatarImg.src = state.userAvatarUrl; avatarImg.className = `w-16 h-16 rounded-full ${state.userFrame} object-cover transition-all`; }
+            updateTasksUI();
+        }
+
+        function switchTab(tabName) {
+            ['rooms', 'chats', 'task', 'my'].forEach(t => {
+                const page = document.getElementById('page' + t.charAt(0).toUpperCase() + t.slice(1));
+                const nav = document.getElementById('nav' + t.charAt(0).toUpperCase() + t.slice(1));
+                if (t === tabName) { page.classList.remove('hidden'); nav.classList.add('text-gechatPink', 'font-bold'); nav.classList.remove('text-gray-400'); }
+                else { page.classList.add('hidden'); nav.classList.remove('text-gechatPink', 'font-bold'); nav.classList.add('text-gray-400'); }
+            });
+        }
+
+        function renderMicSeats() {
+            const grid = document.getElementById('micSeatsGrid');
+            grid.innerHTML = '';
+            for (let i = 1; i <= 15; i++) {
+                const occupant = state.seatOccupants[i];
+                const seatCoins = state.seatRevenues[i] || 0;
+                const isMuted = state.seatMuted[i] || false;
+                
+                if (occupant) {
+                    const micIcon = isMuted ? '<i class="fa-solid fa-microphone-slash text-[9px] absolute -bottom-1 -right-1 bg-red-900 text-red-300 p-0.5 rounded-full border border-red-500/40"></i>' : '<i class="fa-solid fa-microphone text-[9px] absolute -bottom-1 -right-1 bg-teal-900 text-teal-300 animate-pulse p-0.5 rounded-full border border-teal-500/40"></i>';
+                    grid.innerHTML += `
+                        <div class="bg-black/40 ${occupant.frame} rounded-2xl p-1.5 flex flex-col items-center justify-between text-center relative shadow-md">
+                            <span class="absolute top-1 left-1 text-[8px] bg-black/60 text-yellow-300 px-1 rounded-full">#${i}</span>
+                            <div onclick="toggleSeatAction(${i})" class="relative mt-2 cursor-pointer pointer-events-auto" title="Tap to Leave">
+                                <img src="${occupant.avatar}" class="w-10 h-10 rounded-full object-cover">
+                                ${micIcon}
+                            </div>
+                            <div class="w-full mt-1">
+                                <div class="text-[9px] font-extrabold truncate text-teal-100">${occupant.name}</div>
+                                <div class="flex items-center justify-center gap-1 mt-0.5 bg-black/60 px-1 py-0.5 rounded border border-yellow-500/30">
+                                    <span class="text-[8px] text-gechatGold font-extrabold truncate">🪙 ${seatCoins.toLocaleString()}</span>
+                                    <button onclick="toggleMicMute(${i})" class="text-[8px] bg-gechatCardLight hover:bg-gechatPink text-white px-1 rounded cursor-pointer pointer-events-auto" title="Mute/Unmute Mic">
+                                        ${isMuted ? '🔇' : '🎙️'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    grid.innerHTML += `
+                        <div onclick="claimMicSeat(${i})" class="bg-black/30 border border-teal-500/20 rounded-2xl p-1.5 flex flex-col items-center justify-between text-center relative cursor-pointer pointer-events-auto hover:border-teal-400 transition shadow-sm">
+                            <span class="absolute top-1 left-1 text-[8px] bg-black/60 text-teal-300/70 px-1 rounded-full">#${i}</span>
+                            <div class="relative mt-2">
+                                <div class="w-10 h-10 rounded-full bg-teal-950/60 border border-dashed border-teal-500/40 flex items-center justify-center text-teal-300 text-xs">
+                                    <i class="fa-solid fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="w-full mt-1">
+                                <div class="text-[9px] text-teal-300/70">Empty</div>
+                                <div class="text-[8px] text-teal-400/50">Tap to Join</div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        function claimMicSeat(seatNum) {
+            for (let s in state.seatOccupants) {
+                if (state.seatOccupants[s].name === state.userName) {
+                    delete state.seatOccupants[s];
+                }
+            }
+            state.seatOccupants[seatNum] = {
+                name: state.userName,
+                avatar: state.userAvatarUrl,
+                frame: state.userFrame
+            };
+            state.isInSeat = true;
+            state.mySeatNumber = seatNum;
+            renderMicSeats();
+            saveUserDataToCloud();
+            showToast(`🎉 Umakyat ka sa Mic Seat #${seatNum}! Nagsimula na ang iyong 1hr stay timer.`);
+        }
+
+        function toggleMicMute(seatNum) {
+            state.seatMuted[seatNum] = !state.seatMuted[seatNum];
+            renderMicSeats();
+            saveUserDataToCloud();
+            showToast(`Mic #${seatNum} is now ${state.seatMuted[seatNum] ? 'MUTED 🔇' : 'UNMUTED 🎙️'}`);
+        }
+
+        function toggleSeatAction(seatNum) {
+            const occupant = state.seatOccupants[seatNum];
+            if (occupant && occupant.name === state.userName) {
+                if (confirm(`Gusto mo bang bumaba (leave) sa Mic Seat #${seatNum}?`)) {
+                    delete state.seatOccupants[seatNum];
+                    if (state.mySeatNumber === seatNum) {
+                        state.isInSeat = false;
+                        state.mySeatNumber = null;
+                    }
+                    renderMicSeats();
+                    saveUserDataToCloud();
+                    showToast(`Bumaba ka na sa Mic Seat #${seatNum}. Ang upuan ay bakante na.`);
+                }
+            } else {
+                showToast(`Upuan #${seatNum} ay okupado ni ${occupant ? occupant.name : 'iba'}.`);
+            }
+        }
+
+        function openMusicPlayerModal() { document.getElementById('musicPlayerModal').classList.remove('hidden'); }
+        function closeMusicPlayerModal() { document.getElementById('musicPlayerModal').classList.add('hidden'); }
+
+        function playMusicTrack(songName, url) {
+            if (state.currentPlayingAudio) {
+                state.currentPlayingAudio.pause();
+            }
+            state.currentPlayingAudio = new Audio(url);
+            state.currentPlayingAudio.loop = true;
+            state.currentPlayingAudio.play().catch(e => console.log("Audio play error:", e));
+            document.getElementById('nowPlayingSong').innerText = songName + " (Playing 🎶)";
+            showToast(`🎵 Now Playing: ${songName}`);
+        }
+
+        function pauseRoomMusic() {
+            if (state.currentPlayingAudio) {
+                state.currentPlayingAudio.pause();
+                document.getElementById('nowPlayingSong').innerText = "Music Paused ⏸️";
+                showToast("Music paused.");
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toastNotification');
+            toast.innerText = msg; toast.classList.remove('hidden');
+            setTimeout(() => { toast.classList.add('hidden'); }, 3000);
+        }
+
+        function openPartyRoom() { 
+            updateUIState(); 
+            renderMicSeats(); 
+            applyRoomThemeClass(state.roomTheme);
+            document.getElementById('partyRoomOverlay').classList.remove('hidden'); 
+        }
+        function closePartyRoom() { document.getElementById('partyRoomOverlay').classList.add('hidden'); }
+        
+        function openThemeSelectorModal() { document.getElementById('themeSelectorModal').classList.remove('hidden'); }
+        function closeThemeSelectorModal() { document.getElementById('themeSelectorModal').classList.add('hidden'); }
+
+        function setRoomTheme(themeName) {
+            state.roomTheme = themeName;
+            applyRoomThemeClass(themeName);
+            saveUserDataToCloud();
+            closeThemeSelectorModal();
+            showToast(`Applied ${themeName.toUpperCase()} theme to Party Room!`);
+        }
+
+        function applyRoomThemeClass(themeName) {
+            const overlay = document.getElementById('partyRoomOverlay');
+            overlay.className = `fixed inset-0 z-50 flex flex-col transition-all duration-300 theme-${themeName}`;
+        }
+
+        function openInRoomGamesModal() { document.getElementById('inRoomGamesModal').classList.remove('hidden'); }
+        function closeInRoomGamesModal() { document.getElementById('inRoomGamesModal').classList.add('hidden'); }
+
+        function sendRoomChat() {
+            const input = document.getElementById('roomChatInput');
+            if(!input.value.trim()) return;
+            const feed = document.getElementById('roomChatFeed');
+            feed.innerHTML += `<div class="text-teal-100"><span class="font-bold text-teal-300">${state.userName}:</span> ${input.value}</div>`;
+            input.value = ''; feed.scrollTop = feed.scrollHeight;
+        }
+
+        function openGiftModal() { 
+            const seatSelect = document.getElementById('giftTargetSeat');
+            seatSelect.innerHTML = '';
+            for(let i=1; i<=15; i++) {
+                const occ = state.seatOccupants[i];
+                const label = occ ? `Seat #${i}: ${occ.name}` : `Seat #${i} (Empty)`;
+                seatSelect.innerHTML += `<option value="${i}">${label}</option>`;
+            }
+            renderGiftCatalog();
+            document.getElementById('partyRoomGiftPanel').classList.remove('hidden'); 
+        }
+        function closeGiftModal() { document.getElementById('partyRoomGiftPanel').classList.add('hidden'); }
+
+        function switchGiftTab(tab) {
+            state.giftModeTab = tab;
+            const btnReg = document.getElementById('tabBtnRegular');
+            const btnLucky = document.getElementById('tabBtnLucky');
+            const multGrid = document.getElementById('quantityButtonsGrid');
+            const multLabel = document.getElementById('quantityMultiplierLabel');
+            const sendBtnText = document.getElementById('sendGiftButtonText');
+
+            if (tab === 'regular') {
+                btnReg.className = "py-1 text-[11px] font-black rounded-lg bg-gechatPink text-white transition cursor-pointer pointer-events-auto";
+                btnLucky.className = "py-1 text-[11px] font-bold rounded-lg text-gray-400 hover:text-white transition cursor-pointer pointer-events-auto";
+                multLabel.innerText = "QUANTITY MULTIPLIER:";
+                multGrid.innerHTML = `
+                    <button onclick="selectGiftMultiplier(1, this)" class="gift-mult-btn bg-purple-900 border border-yellow-400 rounded py-1 text-[10px] font-black text-yellow-300 cursor-pointer pointer-events-auto">x1</button>
+                    <button onclick="selectGiftMultiplier(5, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x5</button>
+                    <button onclick="selectGiftMultiplier(10, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x10</button>
+                    <button onclick="selectGiftMultiplier(20, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x20</button>
+                    <button onclick="selectGiftMultiplier(50, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x50</button>
+                    <button onclick="selectGiftMultiplier(100, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x100</button>
+                    <button onclick="selectGiftMultiplier(500, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x500</button>
+                `;
+                sendBtnText.innerText = "SEND GIFT";
+                state.selectedGiftMultiplier = 1;
+                state.selectedGiftCost = regularLuxuryGifts[0].cost;
+                state.selectedGiftName = regularLuxuryGifts[0].name;
+                state.selectedGiftEmoji = regularLuxuryGifts[0].emoji;
+            } else {
+                btnLucky.className = "py-1 text-[11px] font-black rounded-lg bg-yellow-500 text-black transition cursor-pointer pointer-events-auto";
+                btnReg.className = "py-1 text-[11px] font-bold rounded-lg text-gray-400 hover:text-white transition cursor-pointer pointer-events-auto";
+                multLabel.innerText = "LUCKY UNLI-TAP (1 - 50 TAPS):";
+                multGrid.innerHTML = `
+                    <button onclick="selectGiftMultiplier(1, this)" class="gift-mult-btn bg-yellow-600 border border-yellow-300 rounded py-1 text-[10px] font-black text-black cursor-pointer pointer-events-auto">x1</button>
+                    <button onclick="selectGiftMultiplier(5, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x5</button>
+                    <button onclick="selectGiftMultiplier(10, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x10</button>
+                    <button onclick="selectGiftMultiplier(20, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x20</button>
+                    <button onclick="selectGiftMultiplier(50, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x50</button>
+                    <button onclick="selectGiftMultiplier(100, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x100</button>
+                    <button onclick="selectGiftMultiplier(500, this)" class="gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto">x500</button>
+                `;
+                sendBtnText.innerText = "LUCKY UNLI-TAP";
+                state.selectedGiftMultiplier = 1;
+                state.selectedGiftCost = luckyMysteryGifts[0].cost;
+                state.selectedGiftName = luckyMysteryGifts[0].name;
+                state.selectedGiftEmoji = luckyMysteryGifts[0].emoji;
+            }
+            renderGiftCatalog();
+        }
+
+        function renderGiftCatalog() {
+            const grid = document.getElementById('giftCatalogGrid');
+            grid.innerHTML = '';
+            const list = state.giftModeTab === 'regular' ? regularLuxuryGifts : luckyMysteryGifts;
+            
+            list.forEach((g, idx) => {
+                const isSelected = idx === 0;
+                const borderClass = isSelected ? 'border-2 border-gechatPink bg-gechatPink/10' : 'border border-gechatCardLight bg-gechatBg';
+                grid.innerHTML += `
+                    <div onclick="selectGiftItem(this, ${g.cost}, '${g.name}', '${g.emoji}')" class="gift-card ${borderClass} rounded-xl p-1.5 text-center cursor-pointer pointer-events-auto hover:border-gechatPink transition">
+                        <div class="text-xl">${g.emoji}</div>
+                        <div class="text-[9px] font-bold mt-0.5 truncate">${g.name}</div>
+                        <div class="text-[8px] text-gechatGold font-bold">${g.cost.toLocaleString()}</div>
+                    </div>
+                `;
+            });
+        }
+        
+        function selectGiftItem(elem, cost, name, emoji) {
+            document.querySelectorAll('.gift-card').forEach(c => c.className = "gift-card border border-gechatCardLight bg-gechatBg rounded-xl p-1.5 text-center cursor-pointer pointer-events-auto hover:border-gechatPink transition");
+            elem.className = "gift-card border-2 border-gechatPink bg-gechatPink/10 rounded-xl p-1.5 text-center cursor-pointer pointer-events-auto transition";
+            state.selectedGiftCost = cost;
+            state.selectedGiftName = name;
+            state.selectedGiftEmoji = emoji;
+        }
+
+        function selectGiftMultiplier(mult, elem) {
+            document.querySelectorAll('.gift-mult-btn').forEach(b => {
+                b.className = "gift-mult-btn bg-gechatBg border border-gechatCardLight rounded py-1 text-[10px] font-bold text-white hover:border-yellow-400 cursor-pointer pointer-events-auto";
+            });
+            elem.className = state.giftModeTab === 'regular' ? 
+                "gift-mult-btn bg-purple-900 border border-yellow-400 rounded py-1 text-[10px] font-black text-yellow-300 cursor-pointer pointer-events-auto" :
+                "gift-mult-btn bg-yellow-600 border border-yellow-300 rounded py-1 text-[10px] font-black text-black cursor-pointer pointer-events-auto";
+            state.selectedGiftMultiplier = mult;
+        }
+
+        function sendGiftAction() {
+            if (state.giftModeTab === 'lucky') {
+                state.luckyTapCount++;
+                if (state.luckyTapCount > 50) {
+                    state.luckyTapCount = 1; 
+                }
+                const badge = document.getElementById('tapCounterBadge');
+                badge.innerText = state.luckyTapCount;
+                badge.classList.remove('hidden');
+                setTimeout(() => { badge.classList.add('hidden'); }, 1500);
+            }
+
+            const totalCost = state.selectedGiftCost * state.selectedGiftMultiplier;
+            if (state.coins < totalCost) { 
+                showToast('⚠️ Insufficient coins! Mag-recharge muna o kumuha ng bonus.'); 
+                return; 
+            }
+
+            state.coins -= totalCost;
+            state.roomRevenue += totalCost;
+            state.agencyCommission += (totalCost * 0.1);
+
+            const mode = document.getElementById('giftSendingMode').value;
+            const targetSeatNum = parseInt(document.getElementById('giftTargetSeat').value);
+
+            let luckyBonusText = "";
+            if (state.giftModeTab === 'lucky') {
+                const isLuckyWin = Math.random() < 0.40; 
+                if (isLuckyWin) {
+                    const randomMultiplierWin = [0.5, 1, 2][Math.floor(Math.random() * 3)];
+                    const luckyCoinWin = Math.floor(totalCost * randomMultiplierWin * 0.15);
+                    state.coins += luckyCoinWin;
+                    luckyBonusText = ` 🍀 Lucky Win (x${randomMultiplierWin}! +${luckyCoinWin.toLocaleString()} Coins)!`;
+                } else {
+                    luckyBonusText = ` 🍀 Lucky Try (Walang nakuha, subok ulit!)`;
+                }
+            }
+
+            if (mode === 'all') {
+                const share = Math.floor(totalCost / 15);
+                for (let i = 1; i <= 15; i++) {
+                    state.seatRevenues[i] = (state.seatRevenues[i] || 0) + share;
+                }
+                state.gems += Math.floor(totalCost * 0.1); 
+            } else {
+                state.seatRevenues[targetSeatNum] = (state.seatRevenues[targetSeatNum] || 0) + totalCost;
+                if (state.seatOccupants[targetSeatNum]) {
+                    state.gems += Math.floor(totalCost * 0.1); 
+                }
+            }
+
+            saveUserDataToCloud();
+            updateUIState();
+            renderMicSeats();
+
+            triggerLiveGiftAnimation(state.selectedGiftName, state.selectedGiftEmoji, state.selectedGiftMultiplier, totalCost, luckyBonusText);
+        }
+
+        function triggerLiveGiftAnimation(giftName, giftEmoji, mult, totalCost, luckyBonusText) {
+            const overlay = document.getElementById('liveGiftAnimOverlay');
+            const iconElem = document.getElementById('animGiftIcon');
+            const titleElem = document.getElementById('animGiftTitle');
+            const descElem = document.getElementById('animGiftDesc');
+            
+            iconElem.innerText = giftEmoji;
+            titleElem.innerText = state.giftModeTab === 'lucky' ? `LUCKY UNLI-TAP` : `${giftName.toUpperCase()} x${mult}!`;
+            descElem.innerText = `Total: ${totalCost.toLocaleString()} Coins sent!${luckyBonusText}`;
+            
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 2000);
+
+            showToast(`🎁 Sent ${giftName}!${luckyBonusText}`);
+        }
+
+        function triggerRedPocketModal() { document.getElementById('redPocketModal').classList.remove('hidden'); }
+        function closeRedPocketModal() { document.getElementById('redPocketModal').classList.add('hidden'); }
+        function claimRedPocket() {
+            state.coins += 500; saveUserDataToCloud(); updateUIState(); closeRedPocketModal(); showToast('🧧 Claimed 500 Red Pocket Coins!');
+        }
+
+        function openDirectChat(name) { document.getElementById('chatTargetName').innerText = name + ' ✨'; document.getElementById('directChatModal').classList.remove('hidden'); }
+        function closeDirectChat() { document.getElementById('directChatModal').classList.add('hidden'); }
+        function sendDirectMessage() {
+            const input = document.getElementById('directMessageInput');
+            if (!input.value.trim()) return;
+            document.getElementById('directChatFeed').innerHTML += `<div class="bg-gechatPink/20 border border-gechatPink/40 p-2.5 rounded-2xl max-w-[80%] text-xs ml-auto text-right text-white">${input.value}</div>`;
+            input.value = '';
+        }
+
+        function startVoiceCall() { document.getElementById('voiceCallModal').classList.remove('hidden'); }
+        function endVoiceCall() { document.getElementById('voiceCallModal').classList.add('hidden'); }
+
+        function selectBetAmount(amount, element) {
+            document.querySelectorAll('.bet-amt-btn').forEach(b => {
+                b.className = "bet-amt-btn bg-gechatCard border border-gechatCardLight rounded-lg py-1.5 text-[10px] font-bold text-white hover:border-yellow-400 transition cursor-pointer pointer-events-auto";
+            });
+            element.className = "bet-amt-btn bg-purple-900 border-2 border-yellow-400 rounded-lg py-1.5 text-[10px] font-black text-yellow-300 shadow cursor-pointer pointer-events-auto";
+            state.selectedBetAmount = amount;
+            showToast(`Napiling taya: ₱${amount}`);
+        }
+
+        function selectBetOption(optionName, element) {
+            document.querySelectorAll('.bet-option-btn').forEach(b => b.classList.remove('border-yellow-400', 'bg-purple-900/90'));
+            element.classList.add('border-yellow-400', 'bg-purple-900/90');
+            state.selectedPlayerBetOption = optionName;
+            document.getElementById('gameSubtitle').innerText = `Pinili: ${optionName} (Bet: ₱${state.selectedBetAmount})`;
+            document.getElementById('currentBetDisplay').innerText = `${optionName} (₱${state.selectedBetAmount})`;
+        }
+
+        function openTeenPattiGame() {
+            closeInRoomGamesModal(); state.currentGame = 'Teen Patti'; state.selectedPlayerBetOption = 'Player A';
+            document.getElementById('gameModalTitle').innerText = '🃏 3D Teen Patti Live Casino';
+            document.getElementById('tableNameHeader').innerText = 'TEEN PATTI 3D TABLE';
+            document.getElementById('gameSubtitle').innerText = 'Pumili ng Player at mag-deal ng baraha!';
+            document.getElementById('gameResultText').innerText = 'Pumili sa ibaba.';
+            document.getElementById('currentBetDisplay').innerText = 'Player A (₱100)';
+            
+            document.getElementById('cardsContainer').innerHTML = `
+                <div class="w-full space-y-3">
+                    <div class="flex gap-3 justify-center items-center py-2">
+                        <div class="poker-card-1 real-card-3d-large card-back">🎴</div>
+                        <div class="poker-card-2 real-card-3d-large card-back">🎴</div>
+                        <div class="poker-card-3 real-card-3d-large card-back">🎴</div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div onclick="selectBetOption('Player A', this)" class="bet-option-btn bg-purple-900/90 border-2 border-yellow-400 rounded-xl p-2.5 text-center text-[11px] font-bold cursor-pointer pointer-events-auto shadow-lg">Player A ♠</div>
+                        <div onclick="selectBetOption('Player B', this)" class="bet-option-btn bg-gechatCard border-2 border-transparent rounded-xl p-2.5 text-center text-[11px] font-bold cursor-pointer pointer-events-auto shadow-lg">Player B ♥</div>
+                        <div onclick="selectBetOption('Tie/Bonus', this)" class="bet-option-btn bg-gechatCard border-2 border-transparent rounded-xl p-2.5 text-center text-[11px] font-bold cursor-pointer pointer-events-auto shadow-lg">Tie / Bonus ⭐</div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('gameModal').classList.remove('hidden');
+        }
+
+        function openLuckyWheelGame() {
+            closeInRoomGamesModal(); state.currentGame = 'Lucky Wheel'; state.selectedPlayerBetOption = 'Spin';
+            document.getElementById('gameModalTitle').innerText = '🎡 3D Lucky Spin Wheel 100x';
+            document.getElementById('tableNameHeader').innerText = 'LUCKY WHEEL ARENA';
+            document.getElementById('gameSubtitle').innerText = 'Malaking Roleta - I-tap ang Spin!';
+            document.getElementById('gameResultText').innerText = 'I-tap ang spin sa ibaba.';
+            document.getElementById('currentBetDisplay').innerText = `Spin (₱${state.selectedBetAmount})`;
+            
+            document.getElementById('cardsContainer').innerHTML = `
+                <div class="relative flex items-center justify-center py-6">
+                    <div id="wheelElem" class="w-40 h-40 rounded-full border-8 border-yellow-400 bg-gradient-to-tr from-purple-800 via-pink-600 to-yellow-500 flex items-center justify-center text-5xl shadow-2xl">🎯</div>
+                    <div class="absolute -top-2 text-yellow-300 text-lg font-black drop-shadow-lg bg-black/70 px-3 py-0.5 rounded-full border border-yellow-400">▼ WIN POINTER</div>
+                </div>
+            `;
+            document.getElementById('gameModal').classList.remove('hidden');
+        }
+
+        function openFruitSlotGame() {
+            closeInRoomGamesModal(); state.currentGame = 'Fruit Slot'; state.selectedPlayerBetOption = 'Play';
+            document.getElementById('gameModalTitle').innerText = '🎰 3D Fruit Slot Machine';
+            document.getElementById('tableNameHeader').innerText = 'CASINO FRUIT SLOTS';
+            document.getElementById('gameSubtitle').innerText = 'Totoong Rolling Reels Jackpot!';
+            document.getElementById('gameResultText').innerText = 'I-tap ang spin.';
+            document.getElementById('currentBetDisplay').innerText = `Slot Spin (₱${state.selectedBetAmount})`;
+            
+            document.getElementById('cardsContainer').innerHTML = `
+                <div class="flex gap-3 justify-center items-center py-4 bg-black/90 border-4 border-yellow-500 rounded-3xl px-6 shadow-2xl">
+                    <div class="bg-gechatBg border-2 border-yellow-400 p-3 rounded-2xl w-16 h-20 flex items-center justify-center overflow-hidden shadow-inner"><span id="slot1" class="text-4xl">🍒</span></div>
+                    <div class="bg-gechatBg border-2 border-yellow-400 p-3 rounded-2xl w-16 h-20 flex items-center justify-center overflow-hidden shadow-inner"><span id="slot2" class="text-4xl">🍋</span></div>
+                    <div class="bg-gechatBg border-2 border-yellow-400 p-3 rounded-2xl w-16 h-20 flex items-center justify-center overflow-hidden shadow-inner"><span id="slot3" class="text-4xl">🍉</span></div>
+                </div>
+            `;
+            document.getElementById('gameModal').classList.remove('hidden');
+        }
+
+        function openGatesOfOlympusGame() {
+            closeInRoomGamesModal(); state.currentGame = 'Gates of Olympus'; state.selectedPlayerBetOption = 'Spin';
+            document.getElementById('gameModalTitle').innerText = '⚡🏛️ Gates of Olympus 3D';
+            document.getElementById('tableNameHeader').innerText = 'ZEUS MULTIPLIER DROP';
+            document.getElementById('gameSubtitle').innerText = 'Zeus Lightning Multipliers (2x - 500x)';
+            document.getElementById('gameResultText').innerText = 'I-tap ang spin.';
+            document.getElementById('currentBetDisplay').innerText = `Olympus Bet (₱${state.selectedBetAmount})`;
+            
+            document.getElementById('cardsContainer').innerHTML = `
+                <div class="grid grid-cols-3 gap-2 p-4 bg-gradient-to-b from-purple-950 to-black border-4 border-yellow-500 rounded-3xl w-full shadow-2xl animate-zeus">
+                    <div class="bg-purple-900/90 p-3 rounded-2xl text-center text-3xl border border-yellow-400 shadow-md">💎</div>
+                    <div class="bg-purple-900/90 p-3 rounded-2xl text-center text-3xl border border-yellow-400 shadow-md">👑</div>
+                    <div class="bg-purple-900/90 p-3 rounded-2xl text-center text-3xl border border-yellow-400 shadow-md">⚡</div>
+                </div>
+            `;
+            document.getElementById('gameModal').classList.remove('hidden');
+        }
+
+        function openOceanHuntGame() {
+            closeInRoomGamesModal(); state.currentGame = 'Ocean Hunt 3D'; state.selectedPlayerBetOption = 'Shoot';
+            document.getElementById('gameModalTitle').innerText = '🦈🌊 Ocean Hunt 3D';
+            document.getElementById('tableNameHeader').innerText = 'DEEP OCEAN FISHING ARENA';
+            document.getElementById('gameSubtitle').innerText = 'I-tap ang shoot para tamaan ang Boss Shark!';
+            document.getElementById('gameResultText').innerText = 'I-tap ang shoot.';
+            document.getElementById('currentBetDisplay').innerText = `Cannon Shot (₱${state.selectedBetAmount})`;
+            
+            document.getElementById('cardsContainer').innerHTML = `
+                <div class="relative w-full py-6 flex flex-col items-center justify-center bg-gradient-to-b from-cyan-950 via-blue-900 to-black border-4 border-cyan-400 rounded-3xl overflow-hidden shadow-2xl">
+                    <div class="text-5xl animate-bounce mb-2">🦈 Boss Megalodon</div>
+                    <div id="playerCannon" class="text-2xl mt-1 text-cyan-300 font-bold bg-black/60 px-4 py-1.5 rounded-full border border-cyan-400 shadow-lg">💥🔫 KANYON READY</div>
+                </div>
+            `;
+            document.getElementById('gameModal').classList.remove('hidden');
+        }
+
+        function openColorGame() {
+            closeInRoomGamesModal(); state.currentGame = 'Color Game'; state.selectedPlayerBetOption = 'Red';
+            document.getElementById('gameModalTitle').innerText = '🎨🎲 Live Casino Color Game';
+            document.getElementById('tableNameHeader').innerText = 'COLOR GAME SHAKER & POINTER';
+            document.getElementById('gameSubtitle').innerText = 'Pumili ng kulay at i-tap ang spin!';
+            document.getElementById('gameResultText').innerText = 'Pumili ng kulay sa ibaba.';
+            document.getElementById('currentBetDisplay').innerText = 'Red (₱100)';
+            
+            document.getElementById('cardsContainer').innerHTML = `
+                <div class="relative flex flex-col items-center justify-center w-full py-1">
+                    <div id="colorWheelBoard" class="relative w-28 h-28 rounded-full border-4 border-yellow-400 bg-gradient-to-tr from-purple-900 via-pink-900 to-indigo-900 flex items-center justify-center shadow-xl">
+                        <span class="text-xs font-bold text-yellow-300">SHAKER</span>
+                        <div id="colorWheelPointer" class="absolute -top-3 w-4 h-12 flex items-center justify-center transition-all duration-300 origin-bottom">
+                            <span class="text-yellow-300 text-lg drop-shadow-md">▲</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-1.5 w-full mt-2">
+                    <div onclick="selectBetOption('Red', this)" class="bet-option-btn bg-red-600/80 border-2 border-yellow-400 rounded-lg p-2 text-center text-[11px] font-black cursor-pointer pointer-events-auto">RED 🟥</div>
+                    <div onclick="selectBetOption('Green', this)" class="bet-option-btn bg-emerald-600/80 border-2 border-transparent rounded-lg p-2 text-center text-[11px] font-black cursor-pointer pointer-events-auto">GREEN 🟩</div>
+                    <div onclick="selectBetOption('Blue', this)" class="bet-option-btn bg-blue-600/80 border-2 border-transparent rounded-lg p-2 text-center text-[11px] font-black cursor-pointer pointer-events-auto">BLUE 🟦</div>
+                    <div onclick="selectBetOption('Yellow', this)" class="bet-option-btn bg-yellow-500/80 border-2 border-transparent rounded-lg p-2 text-center text-[11px] font-black cursor-pointer pointer-events-auto text-black">YELLOW 🟨</div>
+                    <div onclick="selectBetOption('Pink', this)" class="bet-option-btn bg-pink-500/80 border-2 border-transparent rounded-lg p-2 text-center text-[11px] font-black cursor-pointer pointer-events-auto">PINK 🟪</div>
+                    <div onclick="selectBetOption('White', this)" class="bet-option-btn bg-slate-200/80 border-2 border-transparent rounded-lg p-2 text-center text-[11px] font-black cursor-pointer pointer-events-auto text-black">WHITE ⬜</div>
+                </div>
+            `;
+            document.getElementById('gameModal').classList.remove('hidden');
+        }
+
+        function openMinesGame() {
+            closeInRoomGamesModal(); state.currentGame = 'Mines'; state.selectedPlayerBetOption = 'Tile';
+            document.getElementById('gameModalTitle').innerText = '💣💰 Mines (Granada Game)';
+            document.getElementById('tableNameHeader').innerText = 'MINES MULTIPLIER';
+            document.getElementById('gameSubtitle').innerText = `Taya: ₱${state.selectedBetAmount}`;
+            document.getElementById('gameResultText').innerText = 'I-tap ang tile.';
+            document.getElementById('currentBetDisplay').innerText = `Mines Tile (₱${state.selectedBetAmount})`;
+
+            let gridHtml = '<div class="grid grid-cols-4 gap-2 w-full">';
+            for(let i=1; i<=12; i++) {
+                gridHtml += `<div onclick="clickMinesTile(${i}, this)" class="mine-tile bg-purple-950/80 border-2 border-purple-500/60 rounded-xl p-2.5 text-center text-sm cursor-pointer pointer-events-auto">❓</div>`;
+            }
+            gridHtml += '</div>';
+            document.getElementById('cardsContainer').innerHTML = gridHtml;
+            document.getElementById('gameModal').classList.remove('hidden');
+        }
+
+        let minesScoreMultiplier = 1.0;
+        let minesGameOver = false;
+        function clickMinesTile(tileNum, elem) {
+            if (minesGameOver) return;
+            const isBomb = Math.random() < 0.40;
+            if (isBomb) {
+                minesGameOver = true;
+                elem.innerText = "💥";
+                document.getElementById('gameResultText').innerHTML = `<span class="text-red-400">💥 BOMB! Talo ang taya.</span>`;
+            } else {
+                elem.innerText = "💎";
+                minesScoreMultiplier += 0.25;
+                const winAmt = Math.floor(state.selectedBetAmount * minesScoreMultiplier);
+                state.coins += winAmt; updateUIState();
+                document.getElementById('gameResultText').innerHTML = `<span class="text-gechatGreen">💎 Safe! (+${winAmt} Coins)</span>`;
+            }
+        }
+
+        function openDragonTigerGame() {
+            closeInRoomGamesModal(); state.currentGame = 'Dragon vs Tiger'; state.selectedPlayerBetOption = 'Dragon';
+            document.getElementById('gameModalTitle').innerText = '🐉🐯 3D Dragon vs Tiger';
+            document.getElementById('tableNameHeader').innerText = 'DRAGON VS TIGER TABLE';
+            document.getElementById('gameSubtitle').innerText = 'Pumili ng Dragon o Tiger:';
+            document.getElementById('gameResultText').innerText = 'I-tap ang tatayaan sa ibaba.';
+            document.getElementById('currentBetDisplay').innerText = 'Dragon (₱100)';
+            
+            document.getElementById('cardsContainer').innerHTML = `
+                <div class="flex gap-3 justify-center items-center w-full">
+                    <div onclick="selectBetOption('Dragon', this)" class="bet-option-btn bg-red-900/90 border-2 border-yellow-400 rounded-2xl p-3 text-center w-36 cursor-pointer pointer-events-auto shadow-lg">
+                        <div class="text-xs text-red-300 font-bold mb-1">DRAGON 🐉</div>
+                        <div id="dragonCardBox" class="text-xl font-black text-white card-back w-16 h-24 mx-auto rounded-lg">🎴</div>
+                    </div>
+                    <div onclick="selectBetOption('Tiger', this)" class="bet-option-btn bg-amber-900/90 border-2 border-transparent rounded-2xl p-3 text-center w-36 cursor-pointer pointer-events-auto shadow-lg">
+                        <div class="text-xs text-amber-300 font-bold mb-1">TIGER 🐯</div>
+                        <div id="tigerCardBox" class="text-xl font-black text-white card-back w-16 h-24 mx-auto rounded-lg">🎴</div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('gameModal').classList.remove('hidden');
+        }
+
+        function closeGameModal() { document.getElementById('gameModal').classList.add('hidden'); }
+
+        function executeSelectedGameBet() {
+            if (state.currentGame === 'Mines') { showToast('I-tap ang mga tile sa grid!'); return; }
+            const betAmt = state.selectedBetAmount;
+            if (state.coins < betAmt) { showToast('⚠️ Insufficient coins! Mag-recharge muna o kumuha ng bonus.'); return; }
+            state.coins -= betAmt; updateUIState();
+
+            const resultText = document.getElementById('gameResultText');
+            const isUserWin = Math.random() < 0.48; 
+
+            if (state.currentGame === 'Teen Patti') {
+                resultText.innerText = `🃏 Naka-lock ang taya mong [${state.selectedPlayerBetOption}]. Binubuksan ang 3 baraha...`;
+                setTimeout(() => {
+                    const c1 = document.querySelector('.poker-card-1');
+                    const c2 = document.querySelector('.poker-card-2');
+                    const c3 = document.querySelector('.poker-card-3');
+
+                    if (isUserWin) {
+                        if(c1) { c1.className = "real-card-3d-large text-black"; c1.innerHTML = `<span>A♠</span><span class="text-center text-xl">♠</span><span class="self-end">A♠</span>`; }
+                        if(c2) { c2.className = "real-card-3d-large text-red-600"; c2.innerHTML = `<span>K♥</span><span class="text-center text-xl">♥</span><span class="self-end">K♥</span>`; }
+                        if(c3) { c3.className = "real-card-3d-large text-black"; c3.innerHTML = `<span>Q♠</span><span class="text-center text-xl">♠</span><span class="self-end">Q♠</span>`; }
+
+                        const payout = betAmt * 2; 
+                        state.coins += payout; 
+                        updateUIState();
+                        resultText.innerHTML = `<span class="text-gechatGreen">🎉 NANALO KA SA TINAYAAN MO! (+${payout} Coins)</span>`;
+                    } else {
+                        if(c1) { c1.className = "real-card-3d-large text-black"; c1.innerHTML = `<span>5♠</span><span class="text-center text-xl">♠</span><span class="self-end">5♠</span>`; }
+                        if(c2) { c2.className = "real-card-3d-large text-red-600"; c2.innerHTML = `<span>7♥</span><span class="text-center text-xl">♥</span><span class="self-end">7♥</span>`; }
+                        if(c3) { c3.className = "real-card-3d-large text-black"; c3.innerHTML = `<span>2♠</span><span class="text-center text-xl">♠</span><span class="self-end">2♠</span>`; }
+
+                        resultText.innerHTML = `<span class="text-red-400">❌ TALO! Mas mataas ang baraha ng kalaban. Subok ulit!</span>`;
+                    }
+                }, 1500);
+
+            } else if (state.currentGame === 'Lucky Wheel') {
+                resultText.innerText = `🎡 Umiikot nang totoo at mabilis ang Lucky Spin Wheel...`;
+                const wheel = document.getElementById('wheelElem');
+                if(wheel) wheel.classList.add('animate-wheel-3d');
+
+                setTimeout(() => {
+                    if(wheel) wheel.classList.remove('animate-wheel-3d');
+                    if (isUserWin) {
+                        const payout = betAmt * 3; 
+                        state.coins += payout; 
+                        updateUIState();
+                        resultText.innerHTML = `<span class="text-gechatGreen">🎉 WHEEL WIN! Nanalo ka ng 3x multiplier (+${payout} Coins)!</span>`;
+                    } else {
+                        resultText.innerHTML = `<span class="text-red-400">❌ LATE STOP! Lumagpas sa jackpot slot. Talo ang taya.</span>`;
+                    }
+                }, 3500);
+
+            } else if (state.currentGame === 'Fruit Slot') {
+                resultText.innerText = `🎰 Rumarol ang tatlong slot reels...`;
+                const s1 = document.getElementById('slot1');
+                const s2 = document.getElementById('slot2');
+                const s3 = document.getElementById('slot3');
+
+                if(s1) s1.classList.add('animate-slot-3d');
+                if(s2) s2.classList.add('animate-slot-3d');
+                if(s3) s3.classList.add('animate-slot-3d');
+
+                setTimeout(() => {
+                    if(s1) s1.classList.remove('animate-slot-3d');
+                    if(s2) s2.classList.remove('animate-slot-3d');
+                    if(s3) s3.classList.remove('animate-slot-3d');
+
+                    if (isUserWin) {
+                        if(s1) s1.innerText = '⭐';
+                        if(s2) s2.innerText = '⭐';
+                        if(s3) s3.innerText = '⭐';
+
+                        const payout = betAmt * 5; 
+                        state.coins += payout; 
+                        updateUIState();
+                        resultText.innerHTML = `<span class="text-gechatGold font-black">🌟 JACKPOT! Tatlong Star! (+${payout} Coins)!</span>`;
+                    } else {
+                        if(s1) s1.innerText = '🍒';
+                        if(s2) s2.innerText = '🍋';
+                        if(s3) s3.innerText = '🍉';
+
+                        resultText.innerHTML = `<span class="text-red-400">❌ Walang tumugmang prutas. Talo ang spin.</span>`;
+                    }
+                }, 2500);
+
+            } else if (state.currentGame === 'Gates of Olympus') {
+                resultText.innerText = `⚡ Bumabagsak ang Zeus Multiplier Gems...`;
+                setTimeout(() => {
+                    if (isUserWin) {
+                        const payout = betAmt * 4; 
+                        state.coins += payout; 
+                        updateUIState();
+                        resultText.innerHTML = `<span class="text-gechatGreen">🎉 ZEUS MULTIPLIER HIT! (+${payout} Coins)</span>`;
+                    } else {
+                        resultText.innerHTML = `<span class="text-red-400">❌ Walang lumabas na multiplier lightning. Talo!</span>`;
+                    }
+                }, 1800);
+
+            } else if (state.currentGame === 'Ocean Hunt 3D') {
+                resultText.innerText = `💥 Pinutok ang Kanyon sa Pating!`;
+                const cannon = document.getElementById('playerCannon');
+                if(cannon) cannon.classList.add('animate-cannon-3d');
+
+                setTimeout(() => {
+                    if(cannon) cannon.classList.remove('animate-cannon-3d');
+                    if (isUserWin) {
+                        const payout = betAmt * 2.5; 
+                        state.coins += payout; 
+                        updateUIState();
+                        resultText.innerHTML = `<span class="text-gechatGreen">🦈 Nahuli ang Boss Megalodon! (+${payout} Coins)</span>`;
+                    } else {
+                        resultText.innerHTML = `<span class="text-red-400">❌ Nakatakas ang pating sa malalim na dagat. Talo ang kanyon!</span>`;
+                    }
+                }, 1500);
+
+            } else if (state.currentGame === 'Color Game') {
+                resultText.innerText = `🎲 Umiikot ang Color Game Shaker Pointer...`;
+                const pointer = document.getElementById('colorWheelPointer');
+                if(pointer) pointer.classList.add('animate-pointer-spin');
+
+                setTimeout(() => {
+                    if(pointer) pointer.classList.remove('animate-pointer-spin');
+                    if (isUserWin) {
+                        const payout = betAmt * 2; 
+                        state.coins += payout; 
+                        updateUIState();
+                        resultText.innerHTML = `<span class="text-gechatGreen">🎉 WIN! Tumugma sa ${state.selectedPlayerBetOption}! (+${payout} Coins)</span>`;
+                    } else {
+                        resultText.innerHTML = `<span class="text-red-400">❌ Ligaw ang kulay na lumabas. Talo ang taya!</span>`;
+                    }
+                }, 2500);
+
+            } else {
+                resultText.innerText = `🐉🐯 Binubuksan ang Dragon at Tiger...`;
+                setTimeout(() => {
+                    const dBox = document.getElementById('dragonCardBox');
+                    const tBox = document.getElementById('tigerCardBox');
+                    
+                    if (isUserWin) {
+                        if(dBox) { dBox.className = "real-card-3d-large text-black font-extrabold flex flex-col justify-between p-2 mx-auto"; dBox.innerHTML = `<span>K♠</span><span class="text-center text-lg">♠</span><span class="self-end">K♠</span>`; }
+                        if(tBox) { tBox.className = "real-card-3d-large text-red-600 font-extrabold flex flex-col justify-between p-2 mx-auto"; tBox.innerHTML = `<span>4♥</span><span class="text-center text-lg">♥</span><span class="self-end">4♥</span>`; }
+
+                        const payout = betAmt * 2; 
+                        state.coins += payout; 
+                        updateUIState();
+                        resultText.innerHTML = `<span class="text-gechatGreen">🎉 NANALO ANG DRAGON! (+${payout} Coins)</span>`;
+                    } else {
+                        if(dBox) { dBox.className = "real-card-3d-large text-black font-extrabold flex flex-col justify-between p-2 mx-auto"; dBox.innerHTML = `<span>3♠</span><span class="text-center text-lg">♠</span><span class="self-end">3♠</span>`; }
+                        if(tBox) { tBox.className = "real-card-3d-large text-red-600 font-extrabold flex flex-col justify-between p-2 mx-auto"; tBox.innerHTML = `<span>Q♥</span><span class="text-center text-lg">♥</span><span class="self-end">Q♥</span>`; }
+
+                        resultText.innerHTML = `<span class="text-red-400">❌ NANALO ANG TIGER! Talo ang iyong taya.</span>`;
+                    }
+                }, 1500);
+            }
+        }
+
+        function openGCashWithdrawModal() { 
+            document.getElementById('withdrawGemsInput').value = ''; 
+            document.getElementById('withdrawGCashNum').value = ''; 
+            document.getElementById('gcashWithdrawModal').classList.remove('hidden'); 
+        }
+
+        function closeGCashModal() { document.getElementById('gcashWithdrawModal').classList.add('hidden'); }
+
+        function submitGCashWithdraw() { 
+            const gemsInput = parseInt(document.getElementById('withdrawGemsInput').value) || 0;
+            const gcashNum = document.getElementById('withdrawGCashNum').value.trim();
+
+            if (gemsInput < 75000) {
+                showToast('⚠️ Kailangan ay hindi bababa sa 75,000 Gems para maka-withdraw!');
+                return;
+            }
+
+            if (state.gems < gemsInput) {
+                showToast('⚠️ Kulang ang iyong Gems balance para sa halagang ito!');
+                return;
+            }
+
+            if (!gcashNum || gcashNum.length < 10) {
+                showToast('⚠️ Ilagay ang tamang GCash number!');
+                return;
+            }
+
+            state.gems -= gemsInput;
+            state.withdrawRequests.push({ userId: state.userId, gems: gemsInput, gcash: gcashNum, amount: 240 });
+            saveToLocalStorage();
+            updateUIState();
+            closeGCashModal();
+            showToast('🎉 Tagumpay! Nai-submit na ang iyong GCash withdrawal request sa Super Admin.');
+        }
+
+        function openAgencyDashboard() { document.getElementById('agencyModal').classList.remove('hidden'); }
+        function closeAgencyDashboard() { document.getElementById('agencyModal').classList.add('hidden'); }
+        
+        function agencyAcceptJoinRequest(userId, userName) {
+            showToast(`✅ Tinanggap si ${userName} (ID: ${userId}) bilang Host sa iyong Agency!`);
+            document.getElementById('agencyJoinRequestsList').innerHTML = `<div class="text-center text-[10px] text-gray-500 py-2">Wala nang nag-aabang na join request.</div>`;
+            document.getElementById('agencyJoinRequestsCount').innerText = '0';
+        }
+
+        function agencyRejectJoinRequest(userId) {
+            showToast(`❌ Tinanggihan ang kahilingan ng User ID: ${userId}.`);
+            document.getElementById('agencyJoinRequestsList').innerHTML = `<div class="text-center text-[10px] text-gray-500 py-2">Wala nang nag-aabang na join request.</div>`;
+            document.getElementById('agencyJoinRequestsCount').innerText = '0';
+        }
+
+        function openAdminDashboard() {
+            const passcode = prompt("Ilagay ang Super Admin Passcode para buksan ang portal:");
+            if (passcode === "admin123" || passcode === "gechatadmin") {
+                document.getElementById('adminModal').classList.remove('hidden');
+            } else if (passcode !== null) {
+                showToast("⚠️ Maling Passcode! Access Denied.");
+            }
+        }
+        function closeAdminDashboard() { document.getElementById('adminModal').classList.add('hidden'); }
+        
+        function adminApproveWithdrawal(userId, amount) {
+            showToast(`✅ Tinanggap (Accepted) ang GCash withdrawal request ng ID: ${userId} (₱${amount})! Naipadala na sa GCash.`);
+            document.getElementById('adminWithdrawQueueList').innerHTML = `<div class="text-center text-[10px] text-gray-500 py-2">Wala nang pending withdrawal request.</div>`;
+            document.getElementById('withdrawQueueCountBadge').innerText = '0 Pending';
+        }
+
+        function adminRejectWithdrawal(userId) {
+            showToast(`❌ Tinanggihan (Rejected) ang withdrawal request ng ID: ${userId}.`);
+            document.getElementById('adminWithdrawQueueList').innerHTML = `<div class="text-center text-[10px] text-gray-500 py-2">Wala nang pending withdrawal request.</div>`;
+            document.getElementById('withdrawQueueCountBadge').innerText = '0 Pending';
+        }
+
+        // BAGONG FUNCTIONS PARA SA SUPER ADMIN (Coin Sender, Invite/Accept Agency, Agents & Users Access)
+        function adminSendCoinsToSeller() {
+            const targetId = document.getElementById('adminSellerUserId').value.trim();
+            const amount = parseInt(document.getElementById('adminCoinAmount').value) || 0;
+            if(!targetId || amount <= 0) {
+                showToast('⚠️ Pakilagay ang tamang User ID at Coin Amount.');
+                return;
+            }
+            showToast(`🎉 Super Admin: Tagumpay na naipadala ang ${amount.toLocaleString()} coins sa Seller ID: ${targetId}!`);
+            document.getElementById('adminSellerUserId').value = '';
+            document.getElementById('adminCoinAmount').value = '';
+        }
+
+        function adminInviteAgencyOwner() {
+            const inviteId = document.getElementById('adminInviteAgencyInput').value.trim();
+            if(!inviteId) {
+                showToast('⚠️ Pakilagay ang User ID o Email ng i-a-invite.');
+                return;
+            }
+            showToast(`🚀 Tagumpay na naipadala ang Agency Owner invitation sa: ${inviteId}`);
+            document.getElementById('adminInviteAgencyInput').value = '';
+        }
+
+        function adminAcceptAgencyOwner(applicantId) {
+            showToast(`✅ Tinanggap bilang Agency Owner ang User ID: ${applicantId}`);
+            document.getElementById('adminAgencyRequestsList').innerHTML = `<div class="text-center text-[10px] text-gray-500 py-2">Walang nakabinbing agency request.</div>`;
+        }
+
+        function adminRejectAgencyOwner(applicantId) {
+            showToast(`❌ Tinanggihan ang agency application ng User ID: ${applicantId}`);
+            document.getElementById('adminAgencyRequestsList').innerHTML = `<div class="text-center text-[10px] text-gray-500 py-2">Walang nakabinbing agency request.</div>`;
+        }
+
+        function adminOpenManageAgents() {
+            showToast(`🛡️ Super Admin Access: Binubuksan ang GeChat Agents Management Panel...`);
+        }
+
+        function adminOpenManageUsers() {
+            showToast(`🛡️ Super Admin Access: Binubuksan ang GeChat Users Database & Control...`);
+        }
+
+        function openSellerPortal() { document.getElementById('sellerPortalModal').classList.remove('hidden'); }
+        function closeSellerPortal() { document.getElementById('sellerPortalModal').classList.add('hidden'); }
+        
+        function sellerTransferCoins() {
+            const targetUser = document.getElementById('sellerTargetUser').value.trim();
+            const amount = parseInt(document.getElementById('sellerCoinsAmount').value) || 0;
+
+            if (!targetUser) {
+                showToast('⚠️ Ilagay ang Target User ID (Buyer ID)!');
+                return;
+            }
+
+            if (amount <= 0) {
+                showToast('⚠️ Ilagay ang tamang halaga ng coins!');
+                return;
+            }
+
+            if (state.sellerInventory < amount) {
+                showToast('⚠️ Kulang ang iyong Seller Inventory Coins!');
+                return;
+            }
+
+            state.sellerInventory -= amount;
+            saveToLocalStorage();
+            updateUIState();
+            closeSellerPortal();
+            showToast(`🎉 Tagumpay! Naipadala na ang ${amount.toLocaleString()} coins sa User ID: ${targetUser}!`);
+        }
+
+        function copyInviteLink() { showToast('Invite link copied!'); }
+        function openEditProfileModal() { document.getElementById('editProfileModal').classList.remove('hidden'); }
+        function closeEditProfileModal() { document.getElementById('editProfileModal').classList.add('hidden'); }
+        
+        function saveProfileChanges() {
+            state.userName = document.getElementById('editNameInput').value || state.userName;
+            state.userGender = document.getElementById('editGenderInput').value;
+            state.userAge = document.getElementById('editAgeInput').value;
+
+            const fileInput = document.getElementById('editAvatarFileInput');
+            if (fileInput && fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    state.userAvatarUrl = e.target.result;
+                    renderMicSeats();
+                    saveToLocalStorage();
+                    updateUIState();
+                    closeEditProfileModal();
+                    showToast('Profile & Avatar Picture updated successfully!');
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                renderMicSeats();
+                saveToLocalStorage();
+                updateUIState();
+                closeEditProfileModal();
+                showToast('Profile updated successfully!');
+            }
+        }
+
+        function applyAvatarFrame(frameType) {
+            state.userFrame = `avatar-frame-${frameType}`;
+            renderMicSeats();
+            saveUserDataToCloud();
+            updateUIState();
+            showToast(`Applied 3D ${frameType.toUpperCase()} Avatar Frame!`);
+        }
+
+        function openVerificationModal() { document.getElementById('verificationModal').classList.remove('hidden'); }
+        function closeVerificationModal() { document.getElementById('verificationModal').classList.add('hidden'); }
+        function completeVerificationAction() { state.isVerified = true; closeVerificationModal(); showToast('Account verified successfully!'); }
+        function startRealCamera() { showToast('Camera stream active.'); }
+        function closeLuxuryEffect() { document.getElementById('luxuryOverlay').classList.add('hidden'); }
+        function catchRocketBonus() { state.coins += 200; updateUIState(); showToast('Caught 200 Coins!'); }
+    </script>
+</body>
+</html>
