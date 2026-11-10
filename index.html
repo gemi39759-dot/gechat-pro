@@ -2191,10 +2191,9 @@
             state.gamesPlayedToday++;
 
             if (state.giftModeTab === 'lucky') {
-                // SMART FAIR PLAY: 45% chance random, pero kapag patapos na ang araw o naka-5 tries na walang panalo, garantisadong may panalo!
                 let isLuckyWin = Math.random() < 0.45;
                 if (!state.hasWonToday && state.gamesPlayedToday >= 4) {
-                    isLuckyWin = true; // Garantisadong panalo para sa araw na ito!
+                    isLuckyWin = true; 
                 }
 
                 if (isLuckyWin) {
@@ -2479,10 +2478,9 @@
             }
             state.gamesPlayedToday++;
 
-            // SMART FAIR PLAY & GUARANTEED DAILY WIN SYSTEM (Walang halatang pattern, random pero siguradong may panalo bago matapos ang araw)
             let isUserWin = Math.random() < 0.48;
             if (!state.hasWonToday && state.gamesPlayedToday >= 5) {
-                isUserWin = true; // Garantisadong panalo para sa araw na ito!
+                isUserWin = true; 
             }
             if (isUserWin) {
                 state.hasWonToday = true;
