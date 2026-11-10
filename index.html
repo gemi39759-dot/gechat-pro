@@ -2822,5 +2822,14 @@
         function closeLuxuryEffect() { document.getElementById('luxuryOverlay').classList.add('hidden'); }
         function catchRocketBonus() { state.coins += 200; updateUIState(); showToast('Caught 200 Coins!'); }
     </script>
+
+    <!-- SERVICE WORKER REGISTRATION PARA SA PWA INSTALL APP PROMPT -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW registration failed: ', err));
+        });
+      }
+    </script>
 </body>
 </html>
