@@ -1259,7 +1259,7 @@
                         <h4 class="text-xs font-bold text-gechatGold flex items-center gap-1.5"><i class="fa-solid fa-wallet"></i> Agency Commission Balance</h4>
                         <span class="text-[9px] bg-yellow-500/20 text-yellow-300 px-2 py-0.5 rounded-full font-bold">10% Cut</span>
                     </div>
-                    <div class="text-2xl font-black text-gechatGold" id="agencyCommissionDisplay">₱2,090.00</div>
+                    <div class="text-2xl font-black text-gechatGold" id="agencyCommissionDisplay">₱0.00</div>
                     <p class="text-[9px] text-gray-400">Kabuuan ng komisyon mula sa mga host at regalo sa iyong agency.</p>
                 </div>
 
@@ -1268,20 +1268,21 @@
                     <input readonly type="text" value="https://gechat.app/agency/join?ref=AG-9988" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-[10px] text-gray-300">
                 </div>
 
+                <!-- AGENCY INVITE & ACCEPT PENDING REQUESTS -->
                 <div class="bg-gechatCard p-4 rounded-2xl border border-yellow-500/50 space-y-3">
                     <div class="flex justify-between items-center">
                         <h4 class="text-xs font-bold text-yellow-300 flex items-center gap-1.5"><i class="fa-solid fa-user-plus"></i> Mga Nais Sumali sa Agency (<span id="agencyJoinRequestsCount">1</span>)</h4>
                     </div>
                     
                     <div id="agencyJoinRequestsList" class="space-y-2">
-                        <div class="bg-gechatBg p-2.5 rounded-xl border border-gechatCardLight flex justify-between items-center">
+                        <div class="bg-gechatBg p-2.5 rounded-xl border border-gechatCardLight flex items-center justify-between">
                             <div>
-                                <div class="font-bold text-white">Maria_Voice (ID: 661902)</div>
-                                <div class="text-[9px] text-gray-400">Nais sumali bilang Host sa iyong Agency</div>
+                                <div class="font-bold text-white text-xs">Alex_Gamer (ID: 991823)</div>
+                                <div class="text-[9px] text-gray-400">Gusto sumali bilang Host</div>
                             </div>
                             <div class="flex gap-1.5">
-                                <button onclick="agencyAcceptJoinRequest('661902', 'Maria_Voice')" class="bg-green-600 hover:bg-green-700 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold cursor-pointer pointer-events-auto">ACCEPT</button>
-                                <button onclick="agencyRejectJoinRequest('661902')" class="bg-red-600 hover:bg-red-700 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold cursor-pointer pointer-events-auto">REJECT</button>
+                                <button onclick="agencyAcceptJoinRequest('991823', 'Alex_Gamer')" class="bg-green-600 text-white px-2.5 py-1 text-[10px] font-bold rounded-lg cursor-pointer pointer-events-auto">Accept</button>
+                                <button onclick="agencyRejectJoinRequest('991823')" class="bg-red-600 text-white px-2.5 py-1 text-[10px] font-bold rounded-lg cursor-pointer pointer-events-auto">Reject</button>
                             </div>
                         </div>
                     </div>
@@ -1289,32 +1290,18 @@
 
                 <div class="bg-gechatCard p-4 rounded-2xl border border-gechatCardLight space-y-3">
                     <div class="flex justify-between items-center">
-                        <h4 class="text-xs font-bold text-white">📋 Listahan ng mga Active Hosts (<span id="hostCount">2</span>)</h4>
+                        <h4 class="text-xs font-bold text-white">📋 Listahan ng mga Active Hosts (<span id="hostCount">0</span>)</h4>
                         <span class="text-[9px] text-gechatGreen font-semibold">Live Monitoring</span>
                     </div>
                     
                     <div id="activeHostsListContainer" class="space-y-2 text-xs">
-                        <div class="bg-gechatBg p-2.5 rounded-xl border border-gechatCardLight flex justify-between items-center">
-                            <div>
-                                <div class="font-bold text-white">Angel_Host ✨</div>
-                                <div class="text-[9px] text-gray-400">ID: 449102 • Status: Online in PR</div>
-                            </div>
-                            <span class="text-[10px] text-gechatGold font-bold">₱1,250 Comis.</span>
-                        </div>
-
-                        <div class="bg-gechatBg p-2.5 rounded-xl border border-gechatCardLight flex justify-between items-center">
-                            <div>
-                                <div class="font-bold text-white">Mark_Gamer 🎮</div>
-                                <div class="text-[9px] text-gray-400">ID: 883911 • Status: Voice Room</div>
-                            </div>
-                            <span class="text-[10px] text-gechatGold font-bold">₱840 Comis.</span>
-                        </div>
+                        <div class="text-center text-[10px] text-gray-500 py-2">Wala pang rehistradong host sa ngayon.</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SUPER ADMIN CONTROL PORTAL (UPDATED WITH COIN SENDER, INVITE/ACCEPT AGENCY, & AGENTS/USERS ACCESS) -->
+        <!-- SUPER ADMIN CONTROL PORTAL -->
         <div id="adminModal" class="fixed inset-0 bg-gechatBg z-50 hidden flex flex-col pointer-events-auto">
             <div class="p-3 bg-red-950 flex items-center justify-between border-b border-red-800">
                 <h3 class="text-xs font-bold text-red-200 flex items-center gap-2">🛡️ Super Admin Control Portal</h3>
@@ -1327,24 +1314,15 @@
                 <div class="bg-gechatCard p-4 rounded-2xl border border-gechatPink/50 space-y-3">
                     <div class="flex justify-between items-center">
                         <h4 class="text-xs font-bold text-gechatPink flex items-center gap-1.5"><i class="fa-solid fa-wallet"></i> GCash Withdrawal Records & Requests</h4>
-                        <span id="withdrawQueueCountBadge" class="text-[9px] bg-pink-500/20 text-pink-400 px-2 py-0.5 rounded-full font-bold">1 Pending</span>
+                        <span id="withdrawQueueCountBadge" class="text-[9px] bg-pink-500/20 text-pink-400 px-2 py-0.5 rounded-full font-bold">0 Pending</span>
                     </div>
                     
                     <div id="adminWithdrawQueueList" class="space-y-2">
-                        <div class="bg-gechatBg p-2.5 rounded-xl border border-gechatCardLight flex justify-between items-center">
-                            <div>
-                                <div class="font-bold text-white">GeChat User (ID: 784920)</div>
-                                <div class="text-[9px] text-gray-400">GCash: 09171234567 | 75,000 Gems (₱240.00)</div>
-                            </div>
-                            <div class="flex gap-1.5">
-                                <button onclick="adminApproveWithdrawal('784920', 240)" class="bg-green-600 hover:bg-green-700 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold cursor-pointer pointer-events-auto">ACCEPT</button>
-                                <button onclick="adminRejectWithdrawal('784920')" class="bg-red-600 hover:bg-red-700 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold cursor-pointer pointer-events-auto">REJECT</button>
-                            </div>
-                        </div>
+                        <div class="text-center text-[10px] text-gray-500 py-2">Walang pending withdrawal request.</div>
                     </div>
                 </div>
 
-                <!-- 2. COIN SENDER (USER ID, AMOUNT, SEND) PARA SA SELLER -->
+                <!-- 2. COIN SENDER PARA SA SELLER -->
                 <div class="bg-gechatCard p-4 rounded-2xl border border-yellow-500/50 space-y-3">
                     <h4 class="text-xs font-bold text-yellow-300 flex items-center gap-1.5"><i class="fa-solid fa-coins"></i> Super Admin Coin Sender (Seller Load)</h4>
                     <div class="space-y-2">
@@ -1377,14 +1355,14 @@
                     <div class="space-y-2 pt-1">
                         <div class="text-[10px] text-gray-300 font-bold">Pending Agency Owner Requests:</div>
                         <div id="adminAgencyRequestsList" class="space-y-2">
-                            <div class="bg-gechatBg p-2.5 rounded-xl border border-gechatCardLight flex justify-between items-center">
+                            <div class="bg-gechatBg p-2.5 rounded-xl border border-gechatCardLight flex items-center justify-between">
                                 <div>
-                                    <div class="font-bold text-white">Applicant: User ID 992104</div>
-                                    <div class="text-[9px] text-gray-400">Nais maging Agency Owner</div>
+                                    <div class="font-bold text-white text-xs">Agency Leader #88 (ID: 55412)</div>
+                                    <div class="text-[9px] text-gray-400">Gusto maging opisyal na Agency Owner</div>
                                 </div>
                                 <div class="flex gap-1.5">
-                                    <button onclick="adminAcceptAgencyOwner('992104')" class="bg-green-600 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold cursor-pointer pointer-events-auto">ACCEPT</button>
-                                    <button onclick="adminRejectAgencyOwner('992104')" class="bg-red-600 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold cursor-pointer pointer-events-auto">REJECT</button>
+                                    <button onclick="adminAcceptAgencyOwner('55412')" class="bg-green-600 text-white px-2 py-1 text-[10px] font-bold rounded-lg cursor-pointer pointer-events-auto">Accept</button>
+                                    <button onclick="adminRejectAgencyOwner('55412')" class="bg-red-600 text-white px-2 py-1 text-[10px] font-bold rounded-lg cursor-pointer pointer-events-auto">Reject</button>
                                 </div>
                             </div>
                         </div>
@@ -1464,8 +1442,8 @@
         const state = {
             uid: 'guest_user',
             coins: 0,
-            gems: 80000,
-            sellerInventory: 50000,
+            gems: 0,
+            sellerInventory: 0,
             userId: 784920,
             userName: "GeChat User",
             userGender: "Female",
@@ -1506,7 +1484,7 @@
             roomTheme: 'teal',
             luckyTapCount: 0,
             joinedAgencyCode: "",
-            agencyCommission: 2090.00
+            agencyCommission: 0.00
         };
 
         const regularLuxuryGifts = [
@@ -1566,7 +1544,7 @@
                 roomRevenue: state.roomRevenue,
                 roomTheme: state.roomTheme,
                 joinedAgencyCode: state.joinedAgencyCode,
-                agencyCommission: state.agencyCommission
+                agencyCommission: 0.00
             };
             localStorage.setItem('gechat_local_user_data', JSON.stringify(userData));
         }
@@ -1577,8 +1555,8 @@
                 try {
                     const data = JSON.parse(savedData);
                     state.coins = data.coins || 0;
-                    state.gems = data.gems !== undefined ? data.gems : 80000;
-                    state.sellerInventory = data.sellerInventory !== undefined ? data.sellerInventory : 50000;
+                    state.gems = data.gems !== undefined ? data.gems : 0;
+                    state.sellerInventory = data.sellerInventory !== undefined ? data.sellerInventory : 0;
                     state.userId = data.userId || state.userId;
                     state.userName = data.userName || state.userName;
                     state.userGender = data.userGender || state.userGender;
@@ -1596,7 +1574,7 @@
                     state.roomRevenue = data.roomRevenue || 0;
                     state.roomTheme = data.roomTheme || 'teal';
                     state.joinedAgencyCode = data.joinedAgencyCode || "";
-                    state.agencyCommission = data.agencyCommission !== undefined ? data.agencyCommission : 2090.00;
+                    state.agencyCommission = 0.00;
                     
                     const todayStr = new Date().toDateString();
                     if (data.lastQuizDate === todayStr) {
@@ -1869,7 +1847,7 @@
             
             const commDisplay = document.getElementById('agencyCommissionDisplay');
             if (commDisplay) {
-                commDisplay.innerText = `₱${state.agencyCommission.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                commDisplay.innerText = `₱0.00`;
             }
 
             const joinBadge = document.getElementById('joinAgencyStatusBadge');
@@ -2172,7 +2150,7 @@
 
             state.coins -= totalCost;
             state.roomRevenue += totalCost;
-            state.agencyCommission += (totalCost * 0.1);
+            state.agencyCommission = 0.00;
 
             const mode = document.getElementById('giftSendingMode').value;
             const targetSeatNum = parseInt(document.getElementById('giftTargetSeat').value);
@@ -2674,7 +2652,6 @@
             document.getElementById('withdrawQueueCountBadge').innerText = '0 Pending';
         }
 
-        // BAGONG FUNCTIONS PARA SA SUPER ADMIN (Coin Sender, Invite/Accept Agency, Agents & Users Access)
         function adminSendCoinsToSeller() {
             const targetId = document.getElementById('adminSellerUserId').value.trim();
             const amount = parseInt(document.getElementById('adminCoinAmount').value) || 0;
