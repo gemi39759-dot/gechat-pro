@@ -59,6 +59,7 @@
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             overflow-x: hidden;
+            pointer-events: auto !important;
         }
 
         ::-webkit-scrollbar {
@@ -283,10 +284,10 @@
 <body class="min-h-screen flex justify-center items-center bg-black">
 
     <!-- Mobile Frame Container -->
-    <div id="appContainer" class="w-full max-w-md h-screen max-h-[920px] bg-gechatBg text-white flex flex-col relative overflow-hidden shadow-2xl border border-gechatCardLight sm:rounded-3xl">
+    <div id="appContainer" class="w-full max-w-md h-screen max-h-[920px] bg-gechatBg text-white flex flex-col relative overflow-hidden shadow-2xl border border-gechatCardLight sm:rounded-3xl pointer-events-auto">
 
         <!-- GLOBAL TOP STATUS & SYSTEM TICKER HEADER -->
-        <header class="bg-gechatCard px-4 py-3 flex items-center justify-between border-b border-gechatCardLight/50 z-20">
+        <header class="bg-gechatCard px-4 py-3 flex items-center justify-between border-b border-gechatCardLight/50 z-20 pointer-events-auto">
             <div class="flex items-center gap-2">
                 <div class="w-8 h-8 rounded-full pink-purple-gradient flex items-center justify-center font-black text-sm text-white shadow-lg">
                     GC
@@ -312,7 +313,7 @@
         </header>
 
         <!-- GLOBAL ANNOUNCEMENT TICKER -->
-        <div class="bg-gechatCardLight/40 px-3 py-1 flex items-center text-[11px] text-gray-300 border-b border-gechatCardLight/30 z-10">
+        <div class="bg-gechatCardLight/40 px-3 py-1 flex items-center text-[11px] text-gray-300 border-b border-gechatCardLight/30 z-10 pointer-events-auto">
             <i class="fa-solid fa-bullhorn text-gechatPink mr-2 animate-bounce"></i>
             <div class="overflow-hidden whitespace-nowrap w-full">
                 <div id="systemTickerText" class="inline-block animate-marquee pl-full">
@@ -322,10 +323,10 @@
         </div>
 
         <!-- MAIN CONTENT AREA (4 TABS) -->
-        <main id="mainViewport" class="flex-1 overflow-y-auto relative pb-24 z-10">
+        <main id="mainViewport" class="flex-1 overflow-y-auto relative pb-24 z-10 pointer-events-auto">
             
             <!-- PAGE 1: PARTY ROOMS / VOICE HUBS -->
-            <section id="pageRooms" class="p-3 space-y-4">
+            <section id="pageRooms" class="p-3 space-y-4 pointer-events-auto">
                 <div class="relative rounded-2xl p-4 pink-purple-gradient shadow-lg overflow-hidden flex justify-between items-center">
                     <div class="z-10 max-w-[65%]">
                         <span class="bg-black/40 text-gechatGold text-[10px] px-2 py-0.5 rounded-full font-bold">HOT EVENT</span>
@@ -405,7 +406,7 @@
             </section>
 
             <!-- PAGE 2: MESSAGES & PAID CHAT -->
-            <section id="pageChats" class="p-3 space-y-3 hidden">
+            <section id="pageChats" class="p-3 space-y-3 hidden pointer-events-auto">
                 <div class="flex justify-between items-center mb-1">
                     <h2 class="text-base font-bold text-gray-100 flex items-center gap-2">
                         <i class="fa-solid fa-comments text-gechatPink"></i> Messages & Chats
@@ -457,7 +458,7 @@
             </section>
 
             <!-- PAGE 3: TASK CENTER -->
-            <section id="pageTask" class="p-3 space-y-4 hidden">
+            <section id="pageTask" class="p-3 space-y-4 hidden pointer-events-auto">
                 <div class="flex justify-between items-center">
                     <h2 class="text-base font-bold text-gray-100 flex items-center gap-2">
                         <i class="fa-solid fa-list-check text-gechatPink"></i> Daily Task Center
@@ -481,7 +482,7 @@
                             <span id="joinAgencyStatusBadge" class="text-[10px] bg-yellow-500/20 text-yellow-300 font-bold px-2 py-0.5 rounded-full border border-yellow-500/40">Not Joined</span>
                         </div>
                         <div class="space-y-2">
-                            <input id="userJoinAgencyIdInput" type="text" placeholder="Ilagay ang Agency Code (e.g. AG-9988)" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                            <input id="userJoinAgencyIdInput" type="text" placeholder="Ilagay ang Agency Code (e.g. AG-9988)" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white pointer-events-auto">
                             <button onclick="submitUserJoinAgency()" class="w-full py-2.5 gold-btn rounded-xl text-xs font-extrabold cursor-pointer pointer-events-auto">
                                 🏢 MAG-APPLY / SUMALI SA AGENCY
                             </button>
@@ -576,7 +577,7 @@
             </section>
 
             <!-- PAGE 4: MY PROFILE, DASHBOARDS & WALLET -->
-            <section id="pageMy" class="p-3 space-y-4 hidden">
+            <section id="pageMy" class="p-3 space-y-4 hidden pointer-events-auto">
                 <div class="bg-gechatCard rounded-3xl p-4 border border-gechatCardLight relative overflow-hidden shadow-xl">
                     <div class="flex items-center gap-3">
                         <div class="relative">
@@ -751,20 +752,20 @@
                 <div class="space-y-3 text-xs">
                     <div>
                         <label class="block text-[10px] text-gray-400 mb-1">Display Name</label>
-                        <input id="editNameInput" type="text" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                        <input id="editNameInput" type="text" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white pointer-events-auto">
                     </div>
 
                     <div class="grid grid-cols-2 gap-2">
                         <div>
                             <label class="block text-[10px] text-gray-400 mb-1">Gender</label>
-                            <select id="editGenderInput" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                            <select id="editGenderInput" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white pointer-events-auto">
                                 <option value="Female">♀ Female</option>
                                 <option value="Male">♂ Male</option>
                             </select>
                         </div>
                         <div>
                             <label class="block text-[10px] text-gray-400 mb-1">Age (Taon)</label>
-                            <input id="editAgeInput" type="number" value="21" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                            <input id="editAgeInput" type="number" value="21" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white pointer-events-auto">
                         </div>
                     </div>
 
@@ -862,7 +863,7 @@
             </div>
 
             <!-- CIRCULAR & FLOATING PR SEATS AREA -->
-            <div class="flex-1 overflow-y-auto p-3 flex flex-col justify-center">
+            <div class="flex-1 overflow-y-auto p-3 flex flex-col justify-center pointer-events-auto">
                 <div class="pr-circle-container space-y-3">
                     <div class="text-center">
                         <span class="text-[10px] tracking-widest text-teal-200 uppercase font-extrabold bg-teal-900/60 px-3 py-1 rounded-full border border-teal-400/40 shadow">
@@ -874,13 +875,13 @@
             </div>
 
             <!-- CHAT & CONTROLS -->
-            <div class="bg-black/60 backdrop-blur-md p-2.5 border-t border-teal-500/20 space-y-2">
+            <div class="bg-black/60 backdrop-blur-md p-2.5 border-t border-teal-500/20 space-y-2 pointer-events-auto">
                 <div id="roomChatFeed" class="h-20 overflow-y-auto bg-black/40 rounded-xl p-2 text-[11px] space-y-1 border border-teal-500/20">
                     <div class="text-teal-200"><span class="font-bold text-teal-300">System:</span> Welcome to Teal Party Room! Umakyat sa mic seat para mag-start ang 1hr stay timer.</div>
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <input id="roomChatInput" type="text" placeholder="Say something..." class="flex-1 bg-black/60 border border-teal-500/30 rounded-full px-3 py-1.5 text-xs text-white focus:outline-none focus:border-teal-400">
+                    <input id="roomChatInput" type="text" placeholder="Say something..." class="flex-1 bg-black/60 border border-teal-500/30 rounded-full px-3 py-1.5 text-xs text-white focus:outline-none focus:border-teal-400 pointer-events-auto">
                     <button onclick="sendRoomChat()" class="bg-teal-600 hover:bg-teal-500 text-white px-3.5 py-1.5 rounded-full text-xs font-bold cursor-pointer pointer-events-auto shadow">
                         <i class="fa-solid fa-paper-plane"></i>
                     </button>
@@ -891,7 +892,7 @@
             </div>
 
             <!-- GIFT PANEL -->
-            <div id="partyRoomGiftPanel" class="bg-gechatCard/98 border-t border-teal-500/40 p-3 space-y-2 max-h-[45vh] overflow-y-auto hidden">
+            <div id="partyRoomGiftPanel" class="bg-gechatCard/98 border-t border-teal-500/40 p-3 space-y-2 max-h-[45vh] overflow-y-auto hidden pointer-events-auto">
                 <div class="flex justify-between items-center border-b border-gechatCardLight pb-1.5">
                     <div>
                         <h3 class="text-xs font-bold text-white flex items-center gap-1"><i class="fa-solid fa-gift text-gechatPink"></i> Send Luxury & Lucky Gifts</h3>
@@ -912,12 +913,12 @@
                 <div class="grid grid-cols-2 gap-2 text-[11px]">
                     <div>
                         <label class="block text-[9px] text-gray-400 mb-0.5">Target Seat (Mic 1 - 15)</label>
-                        <select id="giftTargetSeat" class="w-full bg-gechatBg border border-gechatCardLight rounded-lg p-1.5 text-[11px] text-white font-bold">
+                        <select id="giftTargetSeat" class="w-full bg-gechatBg border border-gechatCardLight rounded-lg p-1.5 text-[11px] text-white font-bold pointer-events-auto">
                         </select>
                     </div>
                     <div>
                         <label class="block text-[9px] text-gray-400 mb-0.5">Sending Mode</label>
-                        <select id="giftSendingMode" class="w-full bg-gechatBg border border-gechatCardLight rounded-lg p-1.5 text-[11px] text-white font-bold">
+                        <select id="giftSendingMode" class="w-full bg-gechatBg border border-gechatCardLight rounded-lg p-1.5 text-[11px] text-white font-bold pointer-events-auto">
                             <option value="single">Target Selected Seat</option>
                             <option value="all">🚀 SEND TO ALL 15 MICS</option>
                         </select>
@@ -1024,7 +1025,7 @@
         </div>
 
         <div id="inRoomGamesModal" class="fixed inset-0 glass-modal z-50 hidden flex flex-col justify-end pointer-events-auto">
-            <div class="bg-gechatCard border-t border-gechatCardLight rounded-t-3xl p-4 space-y-3 max-h-[85vh] overflow-y-auto">
+            <div class="bg-gechatCard border-t border-gechatCardLight rounded-t-3xl p-4 space-y-3 max-h-[85vh] overflow-y-auto pointer-events-auto">
                 <div class="flex justify-between items-center border-b border-gechatCardLight/60 pb-2">
                     <div>
                         <h3 class="text-xs font-bold text-white flex items-center gap-2">
@@ -1142,12 +1143,12 @@
                 </button>
             </div>
 
-            <div id="directChatFeed" class="flex-1 overflow-y-auto p-4 space-y-3">
+            <div id="directChatFeed" class="flex-1 overflow-y-auto p-4 space-y-3 pointer-events-auto">
                 <div class="text-center text-[10px] text-gray-500 my-2">-- Anti-Spam Protected Chat System --</div>
             </div>
 
-            <div class="p-3 bg-gechatCard border-t border-gechatCardLight flex items-center gap-2">
-                <input id="directMessageInput" type="text" placeholder="Type message (10 Gems)..." class="flex-1 bg-gechatBg border border-gechatCardLight rounded-full px-4 py-2 text-xs text-white focus:outline-none">
+            <div class="p-3 bg-gechatCard border-t border-gechatCardLight flex items-center gap-2 pointer-events-auto">
+                <input id="directMessageInput" type="text" placeholder="Type message (10 Gems)..." class="flex-1 bg-gechatBg border border-gechatCardLight rounded-full px-4 py-2 text-xs text-white focus:outline-none pointer-events-auto">
                 <button onclick="sendDirectMessage()" class="pink-purple-btn px-4 py-2 rounded-full text-xs font-bold cursor-pointer pointer-events-auto">
                     Send
                 </button>
@@ -1181,12 +1182,12 @@
                 <button onclick="closeGameModal()" class="text-gray-400 cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
 
-            <div id="gameCanvasArea" class="flex-1 p-3 flex flex-col justify-between items-center casino-table-felt relative overflow-hidden">
+            <div id="gameCanvasArea" class="flex-1 p-3 flex flex-col justify-between items-center casino-table-felt relative overflow-hidden pointer-events-auto">
                 <div class="text-center mt-1">
                     <span class="bg-black/60 text-gechatGold text-[10px] px-3 py-1 rounded-full border border-yellow-500/40 font-bold"><span id="tableNameHeader">3D TABLE</span> • POT: <span id="tablePot">1,500</span> Coins</span>
                 </div>
 
-                <div class="w-full max-w-xs bg-black/40 border border-yellow-600/40 rounded-3xl p-4 text-center space-y-3 backdrop-blur-md shadow-2xl">
+                <div class="w-full max-w-xs bg-black/40 border border-yellow-600/40 rounded-3xl p-4 text-center space-y-3 backdrop-blur-md shadow-2xl pointer-events-auto">
                     <div id="gameSubtitle" class="text-xs text-yellow-300 font-bold uppercase tracking-widest">Pumili ng taya at halaga!</div>
                     
                     <div class="space-y-1">
@@ -1253,7 +1254,7 @@
                 <h3 class="text-xs font-bold text-white flex items-center gap-2">🏢 Agency Owner Dashboard</h3>
                 <button onclick="closeAgencyDashboard()" class="text-gray-400 cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
-            <div class="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+            <div class="flex-1 overflow-y-auto p-4 space-y-4 text-xs pointer-events-auto">
                 <div class="bg-gechatCard p-4 rounded-2xl border border-gechatGold/50 space-y-2">
                     <div class="flex justify-between items-center">
                         <h4 class="text-xs font-bold text-gechatGold flex items-center gap-1.5"><i class="fa-solid fa-wallet"></i> Agency Commission Balance</h4>
@@ -1265,7 +1266,7 @@
 
                 <div class="bg-gechatCard p-4 rounded-2xl border border-gechatPink/40 space-y-2">
                     <h4 class="text-xs font-bold text-gechatPink">Agency Recruitment Invite Link</h4>
-                    <input readonly type="text" value="https://gechat.app/agency/join?ref=AG-9988" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-[10px] text-gray-300">
+                    <input readonly type="text" value="https://gechat.app/agency/join?ref=AG-9988" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-[10px] text-gray-300 pointer-events-auto">
                 </div>
 
                 <!-- AGENCY INVITE & ACCEPT PENDING REQUESTS -->
@@ -1308,7 +1309,7 @@
                 <button onclick="closeAdminDashboard()" class="text-gray-400 cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             
-            <div class="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+            <div class="flex-1 overflow-y-auto p-4 space-y-4 text-xs pointer-events-auto">
                 
                 <!-- 1. GCASH WITHDRAWAL RECORDS & REQUESTS -->
                 <div class="bg-gechatCard p-4 rounded-2xl border border-gechatPink/50 space-y-3">
@@ -1328,11 +1329,11 @@
                     <div class="space-y-2">
                         <div>
                             <label class="block text-[10px] text-gray-400 mb-1">Target User ID (Seller ID):</label>
-                            <input id="adminSellerUserId" type="text" placeholder="Ilagay ang User ID (e.g. 784920)" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                            <input id="adminSellerUserId" type="text" placeholder="Ilagay ang User ID (e.g. 784920)" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white pointer-events-auto">
                         </div>
                         <div>
                             <label class="block text-[10px] text-gray-400 mb-1">Amount (Coins):</label>
-                            <input id="adminCoinAmount" type="number" placeholder="Ilagay ang bilang ng coins na ise-send" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                            <input id="adminCoinAmount" type="number" placeholder="Ilagay ang bilang ng coins na ise-send" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white pointer-events-auto">
                         </div>
                         <button onclick="adminSendCoinsToSeller()" class="w-full gold-btn py-2.5 rounded-xl text-xs font-black cursor-pointer pointer-events-auto">
                             SEND COINS TO SELLER
@@ -1347,7 +1348,7 @@
                     <div class="space-y-2 border-b border-gechatCardLight pb-3">
                         <label class="block text-[10px] text-gray-400 mb-1">Invite New Agency Owner (User ID / Email):</label>
                         <div class="flex gap-2">
-                            <input id="adminInviteAgencyInput" type="text" placeholder="Ilagay ang User ID o Email" class="flex-1 bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                            <input id="adminInviteAgencyInput" type="text" placeholder="Ilagay ang User ID o Email" class="flex-1 bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white pointer-events-auto">
                             <button onclick="adminInviteAgencyOwner()" class="pink-purple-btn px-4 py-2 rounded-xl text-xs font-bold cursor-pointer pointer-events-auto">INVITE</button>
                         </div>
                     </div>
@@ -1392,18 +1393,18 @@
                 <h3 class="text-xs font-bold text-white flex items-center gap-2">🪙 Authorized Coin Seller Portal</h3>
                 <button onclick="closeSellerPortal()" class="text-gray-400 cursor-pointer pointer-events-auto"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
-            <div class="p-4 space-y-4 text-xs">
+            <div class="p-4 space-y-4 text-xs pointer-events-auto">
                 <div class="bg-gechatCard p-4 rounded-2xl border border-gechatPurple/40 space-y-3">
                     <h4 class="text-xs font-bold text-gechatPurple">Transfer Coins to Buyer / User</h4>
                     
                     <div>
                         <label class="block text-[10px] text-gray-400 mb-1">Target User ID (Buyer ID):</label>
-                        <input id="sellerTargetUser" type="text" placeholder="Ilagay ang User ID (e.g. 784920)" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                        <input id="sellerTargetUser" type="text" placeholder="Ilagay ang User ID (e.g. 784920)" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white pointer-events-auto">
                     </div>
 
                     <div>
                         <label class="block text-[10px] text-gray-400 mb-1">Coin Amount:</label>
-                        <input id="sellerCoinsAmount" type="number" placeholder="Bilang ng coins na ise-send" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white">
+                        <input id="sellerCoinsAmount" type="number" placeholder="Bilang ng coins na ise-send" class="w-full bg-gechatBg border border-gechatCardLight rounded-xl p-2 text-xs text-white pointer-events-auto">
                     </div>
 
                     <button onclick="sellerTransferCoins()" class="w-full pink-purple-btn py-2.5 rounded-xl text-xs font-bold cursor-pointer pointer-events-auto">
@@ -1484,7 +1485,11 @@
             roomTheme: 'teal',
             luckyTapCount: 0,
             joinedAgencyCode: "",
-            agencyCommission: 0.00
+            agencyCommission: 0.00,
+            // FAIR PLAY & DAILY WIN GUARANTEE TRACKER
+            lastGameWinDate: "",
+            gamesPlayedToday: 0,
+            hasWonToday: false
         };
 
         const regularLuxuryGifts = [
@@ -1521,8 +1526,8 @@
         function saveToLocalStorage() {
             const userData = {
                 coins: state.coins,
-                gems: state.gems,
-                sellerInventory: state.sellerInventory,
+                gems: 0,
+                sellerInventory: 0,
                 userId: state.userId,
                 userName: state.userName,
                 userGender: state.userGender,
@@ -1544,7 +1549,10 @@
                 roomRevenue: state.roomRevenue,
                 roomTheme: state.roomTheme,
                 joinedAgencyCode: state.joinedAgencyCode,
-                agencyCommission: 0.00
+                agencyCommission: 0.00,
+                lastGameWinDate: state.lastGameWinDate,
+                gamesPlayedToday: state.gamesPlayedToday,
+                hasWonToday: state.hasWonToday
             };
             localStorage.setItem('gechat_local_user_data', JSON.stringify(userData));
         }
@@ -1555,8 +1563,8 @@
                 try {
                     const data = JSON.parse(savedData);
                     state.coins = data.coins || 0;
-                    state.gems = data.gems !== undefined ? data.gems : 0;
-                    state.sellerInventory = data.sellerInventory !== undefined ? data.sellerInventory : 0;
+                    state.gems = 0;
+                    state.sellerInventory = 0;
                     state.userId = data.userId || state.userId;
                     state.userName = data.userName || state.userName;
                     state.userGender = data.userGender || state.userGender;
@@ -1583,6 +1591,16 @@
                     } else {
                         state.todayQuizAnsweredCount = 0;
                         state.lastQuizDate = todayStr;
+                    }
+
+                    if (data.lastGameWinDate === todayStr) {
+                        state.gamesPlayedToday = data.gamesPlayedToday || 0;
+                        state.hasWonToday = data.hasWonToday || false;
+                        state.lastGameWinDate = data.lastGameWinDate;
+                    } else {
+                        state.gamesPlayedToday = 0;
+                        state.hasWonToday = false;
+                        state.lastGameWinDate = todayStr;
                     }
 
                     state.withdrawRequests = data.withdrawRequests || [];
@@ -2156,11 +2174,25 @@
             const targetSeatNum = parseInt(document.getElementById('giftTargetSeat').value);
 
             let luckyBonusText = "";
+            const todayStr = new Date().toDateString();
+            if (state.lastGameWinDate !== todayStr) {
+                state.lastGameWinDate = todayStr;
+                state.gamesPlayedToday = 0;
+                state.hasWonToday = false;
+            }
+            state.gamesPlayedToday++;
+
             if (state.giftModeTab === 'lucky') {
-                const isLuckyWin = Math.random() < 0.40; 
+                // SMART FAIR PLAY: 45% chance random, pero kapag patapos na ang araw o naka-5 tries na walang panalo, garantisadong may panalo!
+                let isLuckyWin = Math.random() < 0.45;
+                if (!state.hasWonToday && state.gamesPlayedToday >= 4) {
+                    isLuckyWin = true; // Garantisadong panalo para sa araw na ito!
+                }
+
                 if (isLuckyWin) {
-                    const randomMultiplierWin = [0.5, 1, 2][Math.floor(Math.random() * 3)];
-                    const luckyCoinWin = Math.floor(totalCost * randomMultiplierWin * 0.15);
+                    state.hasWonToday = true;
+                    const randomMultiplierWin = [0.5, 1, 2, 3][Math.floor(Math.random() * 4)];
+                    const luckyCoinWin = Math.floor(totalCost * randomMultiplierWin * 0.25);
                     state.coins += luckyCoinWin;
                     luckyBonusText = ` 🍀 Lucky Win (x${randomMultiplierWin}! +${luckyCoinWin.toLocaleString()} Coins)!`;
                 } else {
@@ -2431,8 +2463,24 @@
             if (state.coins < betAmt) { showToast('⚠️ Insufficient coins! Mag-recharge muna o kumuha ng bonus.'); return; }
             state.coins -= betAmt; updateUIState();
 
+            const todayStr = new Date().toDateString();
+            if (state.lastGameWinDate !== todayStr) {
+                state.lastGameWinDate = todayStr;
+                state.gamesPlayedToday = 0;
+                state.hasWonToday = false;
+            }
+            state.gamesPlayedToday++;
+
+            // SMART FAIR PLAY & GUARANTEED DAILY WIN SYSTEM (Walang halatang pattern, random pero siguradong may panalo bago matapos ang araw)
+            let isUserWin = Math.random() < 0.48;
+            if (!state.hasWonToday && state.gamesPlayedToday >= 5) {
+                isUserWin = true; // Garantisadong panalo para sa araw na ito!
+            }
+            if (isUserWin) {
+                state.hasWonToday = true;
+            }
+
             const resultText = document.getElementById('gameResultText');
-            const isUserWin = Math.random() < 0.48; 
 
             if (state.currentGame === 'Teen Patti') {
                 resultText.innerText = `🃏 Naka-lock ang taya mong [${state.selectedPlayerBetOption}]. Binubuksan ang 3 baraha...`;
